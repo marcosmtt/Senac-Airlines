@@ -15,7 +15,7 @@ public class TelaInicial extends javax.swing.JFrame {
     private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
     private JPanel currentJPanel;
-    
+
     private PanelCadastro cadastroPanel;
     private PanelVoos voosPanel;
 
@@ -30,12 +30,8 @@ public class TelaInicial extends javax.swing.JFrame {
         this.jPanelDesktop.setLayout(new BorderLayout());
         //PAINEIS DA TELA INICIAL
         cadastroPanel = new PanelCadastro(this);
-        this.cadastroPanel.setVisible(false);
-        this.jPanelDesktop.add(cadastroPanel, BorderLayout.CENTER);
+        voosPanel = new PanelVoos();
 
-//        voosPanel = new PanelVoos(this);
-//        this.voosPanel.setVisible(false);
-//        this.jPanelDesktop.add(voosPanel, BorderLayout.CENTER);
         //--
         this.frameSizeInitialSize = getState();
 //        this.setBounds(new Rectangle(screenSize));
@@ -76,6 +72,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void refreshPanels() {
         this.currentJPanel.setVisible(false);
+        this.jPanelDesktop.removeAll();
 
         if (enumCurrentPanel == EnumPanel.HOME) {
 //            this.currentJPanel = voosPanel;
@@ -83,14 +80,16 @@ public class TelaInicial extends javax.swing.JFrame {
             this.jLabelDesktopTitle.setIcon(this.jLabelHome.getIcon());
         }
         if (enumCurrentPanel == EnumPanel.VOOS) {
-//            this.currentJPanel = voosPanel;
+            this.currentJPanel = voosPanel;
             this.jLabelDesktopTitle.setText("VOOS");
             this.jLabelDesktopTitle.setIcon(this.jLabelVoos.getIcon());
+            this.jPanelDesktop.add(voosPanel, BorderLayout.CENTER);
         }
         if (enumCurrentPanel == EnumPanel.CADASTRO) {
             this.currentJPanel = cadastroPanel;
             this.jLabelDesktopTitle.setText("CADASTRO");
             this.jLabelDesktopTitle.setIcon(this.jLabelCadastro.getIcon());
+            this.jPanelDesktop.add(cadastroPanel, BorderLayout.CENTER);
         }
         if (enumCurrentPanel == EnumPanel.GERENCIADOR) {
 //            this.currentJPanel = voosPanel;
@@ -104,6 +103,8 @@ public class TelaInicial extends javax.swing.JFrame {
         }
 
         this.currentJPanel.setVisible(true);
+        this.paintComponents(this.getGraphics());
+
     }
 
     private void maximize() {
