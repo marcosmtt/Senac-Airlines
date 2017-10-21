@@ -3,8 +3,11 @@ package local.view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.plaf.IconUIResource;
 import local.model.TemplateDosPaineis;
 
 /**
@@ -98,7 +101,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jPanelBackground = new javax.swing.JPanel();
         jLabelDesktopTitle = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabelLogo = new javax.swing.JLabel();
         jPanelDesktop = new javax.swing.JPanel();
         jLabelVoos = new javax.swing.JLabel();
         jLabelHome = new javax.swing.JLabel();
@@ -123,11 +126,12 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabelDesktopTitle.setText("HOME");
         jLabelDesktopTitle.setOpaque(true);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 153, 51));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel3.setPreferredSize(new java.awt.Dimension(200, 100));
+        jLabelLogo.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabelLogo.setForeground(new java.awt.Color(255, 153, 51));
+        jLabelLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo.png"))); // NOI18N
+        jLabelLogo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabelLogo.setPreferredSize(new java.awt.Dimension(200, 100));
 
         jPanelDesktop.setBackground(new java.awt.Color(44, 102, 152));
 
@@ -263,7 +267,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addComponent(jLabelExit, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanelBackgroundLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelBackgroundLayout.setVerticalGroup(
@@ -274,7 +278,7 @@ public class TelaInicial extends javax.swing.JFrame {
                     .addComponent(jLabelMaximize)
                     .addComponent(jLabelMinimize))
                 .addGap(15, 15, 15)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
                 .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanelBackgroundLayout.createSequentialGroup()
@@ -359,11 +363,11 @@ public class TelaInicial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelCadastro;
     private javax.swing.JLabel jLabelDesktopTitle;
     private javax.swing.JLabel jLabelExit;
     private javax.swing.JLabel jLabelHome;
+    private javax.swing.JLabel jLabelLogo;
     private javax.swing.JLabel jLabelMaximize;
     private javax.swing.JLabel jLabelMinimize;
     private javax.swing.JLabel jLabelRegistros;

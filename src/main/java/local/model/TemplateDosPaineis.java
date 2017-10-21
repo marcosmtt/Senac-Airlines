@@ -5,6 +5,7 @@
  */
 package local.model;
 
+import local.util.LabelButtonAnimationMouseListener;
 import java.awt.Component;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
