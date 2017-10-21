@@ -1,4 +1,4 @@
-package local.Address;
+package local.model.object;
 
 public class Destino extends Endereco {
 

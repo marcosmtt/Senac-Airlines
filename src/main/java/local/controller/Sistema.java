@@ -1,4 +1,4 @@
-package local.System;
+package local.controller;
 
 public class Sistema {
 

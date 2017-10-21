@@ -1,4 +1,4 @@
-package local.Airline;
+package local.model.object;
 
 import java.util.Date;
 

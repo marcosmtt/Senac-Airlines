@@ -1,4 +1,4 @@
-package local.Address;
+package local.model.object;
 
 import java.util.Objects;
 

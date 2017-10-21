@@ -1,4 +1,4 @@
-package local.Clients;
+package local.model.object;
 
 import java.util.Objects;
 
