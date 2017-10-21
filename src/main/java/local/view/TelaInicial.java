@@ -3,11 +3,8 @@ package local.view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.plaf.IconUIResource;
 import local.model.TemplateDosPaineis;
 
 /**
