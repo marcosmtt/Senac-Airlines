@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import local.model.TemplateDosPaineis;
+import local.model.VoosGraphics;
 
 /**
  *
@@ -19,48 +20,92 @@ public class TelaInicial extends javax.swing.JFrame {
     private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
     private JPanel currentJPanel;
+    
     private PanelCadastro cadastroPanel;
+    private PanelVoos voosPanel;
 
     private enum EnumPanel {
-        HOME, CADASTRO, REGISTROS
+        HOME, VOOS, CADASTRO, GERENCIADOR, REGISTROS
     }
     private EnumPanel enumCurrentPanel;
 
     public TelaInicial() {
         initComponents();
         new TemplateDosPaineis(this.jPanelBackground);
-        //PAINEIS DA TELA INICIAL
         this.jPanelDesktop.setLayout(new BorderLayout());
+        //PAINEIS DA TELA INICIAL
         cadastroPanel = new PanelCadastro(this);
         this.cadastroPanel.setVisible(false);
-
         this.jPanelDesktop.add(cadastroPanel, BorderLayout.CENTER);
+
+//        voosPanel = new PanelVoos(this);
+//        this.voosPanel.setVisible(false);
+//        this.jPanelDesktop.add(voosPanel, BorderLayout.CENTER);
         //--
         this.frameSizeInitialSize = getState();
 //        this.setBounds(new Rectangle(screenSize));
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         isMaximized = true;
 
-        this.enumCurrentPanel = EnumPanel.HOME;
+        this.enumCurrentPanel = EnumPanel.CADASTRO;
         this.currentJPanel = cadastroPanel;
         this.paintComponents(this.getGraphics());
     }
 
     private void changePanel(EnumPanel panelName) {
 
-        if (panelName == EnumPanel.CADASTRO) {
-            this.enumCurrentPanel = EnumPanel.CADASTRO;
-            refreshPanels();
-            System.out.println("ka");
+        if (null != panelName) {
+            switch (panelName) {
+                case HOME:
+                    this.enumCurrentPanel = EnumPanel.HOME;
+                    break;
+                case VOOS:
+                    this.enumCurrentPanel = EnumPanel.VOOS;
+                    break;
+                case CADASTRO:
+                    this.enumCurrentPanel = EnumPanel.CADASTRO;
+                    break;
+                case GERENCIADOR:
+                    this.enumCurrentPanel = EnumPanel.GERENCIADOR;
+                    break;
+                case REGISTROS:
+                    this.enumCurrentPanel = EnumPanel.REGISTROS;
+                    break;
+                default:
+                    break;
+            }
         }
 
+        refreshPanels();
     }
 
     private void refreshPanels() {
         this.currentJPanel.setVisible(false);
 
+        if (enumCurrentPanel == EnumPanel.HOME) {
+//            this.currentJPanel = voosPanel;
+            this.jLabelDesktopTitle.setText("HOME");
+            this.jLabelDesktopTitle.setIcon(this.jLabelHome.getIcon());
+        }
+        if (enumCurrentPanel == EnumPanel.VOOS) {
+//            this.currentJPanel = voosPanel;
+            this.jLabelDesktopTitle.setText("VOOS");
+            this.jLabelDesktopTitle.setIcon(this.jLabelVoos.getIcon());
+        }
         if (enumCurrentPanel == EnumPanel.CADASTRO) {
             this.currentJPanel = cadastroPanel;
+            this.jLabelDesktopTitle.setText("CADASTRO");
+            this.jLabelDesktopTitle.setIcon(this.jLabelCadastro.getIcon());
+        }
+        if (enumCurrentPanel == EnumPanel.GERENCIADOR) {
+//            this.currentJPanel = voosPanel;
+            this.jLabelDesktopTitle.setText("GERENCIADOR");
+            this.jLabelDesktopTitle.setIcon(this.jLabelGerenciador.getIcon());
+        }
+        if (enumCurrentPanel == EnumPanel.REGISTROS) {
+//            this.currentJPanel = voosPanel;
+            this.jLabelDesktopTitle.setText("REGISTROS");
+            this.jLabelDesktopTitle.setIcon(this.jLabelRegistros.getIcon());
         }
 
         this.currentJPanel.setVisible(true);
@@ -102,9 +147,9 @@ public class TelaInicial extends javax.swing.JFrame {
         jPanelDesktop = new javax.swing.JPanel();
         jLabelVoos = new javax.swing.JLabel();
         jLabelHome = new javax.swing.JLabel();
-        jLabelRegistros = new javax.swing.JLabel();
+        jLabelGerenciador = new javax.swing.JLabel();
         jLabelCadastro = new javax.swing.JLabel();
-        jLabelSEMFUNCAO = new javax.swing.JLabel();
+        jLabelRegistros = new javax.swing.JLabel();
         jLabelExit = new javax.swing.JLabel();
         jLabelMaximize = new javax.swing.JLabel();
         jLabelMinimize = new javax.swing.JLabel();
@@ -117,7 +162,7 @@ public class TelaInicial extends javax.swing.JFrame {
         jPanelBackground.setBackground(new java.awt.Color(3, 54, 99));
 
         jLabelDesktopTitle.setBackground(new java.awt.Color(44, 102, 152));
-        jLabelDesktopTitle.setFont(new java.awt.Font("Gisha", 1, 22)); // NOI18N
+        jLabelDesktopTitle.setFont(new java.awt.Font("Gisha", 1, 17)); // NOI18N
         jLabelDesktopTitle.setForeground(new java.awt.Color(232, 233, 232));
         jLabelDesktopTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelDesktopTitle.setText("HOME");
@@ -152,6 +197,11 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabelVoos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelVoos.setName("botao"); // NOI18N
         jLabelVoos.setOpaque(true);
+        jLabelVoos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelVoosMouseClicked(evt);
+            }
+        });
 
         jLabelHome.setBackground(new java.awt.Color(44, 102, 152));
         jLabelHome.setFont(new java.awt.Font("Gisha", 1, 17)); // NOI18N
@@ -163,20 +213,28 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabelHome.setName("botao"); // NOI18N
         jLabelHome.setOpaque(true);
         jLabelHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelHomeMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabelHomeMouseEntered(evt);
             }
         });
 
-        jLabelRegistros.setBackground(new java.awt.Color(44, 102, 152));
-        jLabelRegistros.setFont(new java.awt.Font("Gisha", 1, 17)); // NOI18N
-        jLabelRegistros.setForeground(new java.awt.Color(232, 233, 232));
-        jLabelRegistros.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelRegistros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8_Autopilot_25px.png"))); // NOI18N
-        jLabelRegistros.setText("GERENCIADOR");
-        jLabelRegistros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabelRegistros.setName("botao"); // NOI18N
-        jLabelRegistros.setOpaque(true);
+        jLabelGerenciador.setBackground(new java.awt.Color(44, 102, 152));
+        jLabelGerenciador.setFont(new java.awt.Font("Gisha", 1, 17)); // NOI18N
+        jLabelGerenciador.setForeground(new java.awt.Color(232, 233, 232));
+        jLabelGerenciador.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelGerenciador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8_Autopilot_25px.png"))); // NOI18N
+        jLabelGerenciador.setText("GERENCIADOR");
+        jLabelGerenciador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelGerenciador.setName("botao"); // NOI18N
+        jLabelGerenciador.setOpaque(true);
+        jLabelGerenciador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelGerenciadorMouseClicked(evt);
+            }
+        });
 
         jLabelCadastro.setBackground(new java.awt.Color(44, 102, 152));
         jLabelCadastro.setFont(new java.awt.Font("Gisha", 1, 17)); // NOI18N
@@ -193,15 +251,20 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
-        jLabelSEMFUNCAO.setBackground(new java.awt.Color(44, 102, 152));
-        jLabelSEMFUNCAO.setFont(new java.awt.Font("Gisha", 1, 17)); // NOI18N
-        jLabelSEMFUNCAO.setForeground(new java.awt.Color(232, 233, 232));
-        jLabelSEMFUNCAO.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelSEMFUNCAO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8_Filing_Cabinet_25px.png"))); // NOI18N
-        jLabelSEMFUNCAO.setText("REGISTROS");
-        jLabelSEMFUNCAO.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabelSEMFUNCAO.setName("botao"); // NOI18N
-        jLabelSEMFUNCAO.setOpaque(true);
+        jLabelRegistros.setBackground(new java.awt.Color(44, 102, 152));
+        jLabelRegistros.setFont(new java.awt.Font("Gisha", 1, 17)); // NOI18N
+        jLabelRegistros.setForeground(new java.awt.Color(232, 233, 232));
+        jLabelRegistros.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelRegistros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8_Filing_Cabinet_25px.png"))); // NOI18N
+        jLabelRegistros.setText("REGISTROS");
+        jLabelRegistros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelRegistros.setName("botao"); // NOI18N
+        jLabelRegistros.setOpaque(true);
+        jLabelRegistros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelRegistrosMouseClicked(evt);
+            }
+        });
 
         jLabelExit.setBackground(new java.awt.Color(232, 233, 232));
         jLabelExit.setFont(new java.awt.Font("Gisha", 1, 12)); // NOI18N
@@ -253,8 +316,8 @@ public class TelaInicial extends javax.swing.JFrame {
                         .addComponent(jLabelVoos, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabelHome, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabelCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelSEMFUNCAO, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelGerenciador, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelDesktopTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
@@ -294,9 +357,9 @@ public class TelaInicial extends javax.swing.JFrame {
                         .addGap(25, 25, 25)
                         .addComponent(jLabelCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25)
-                        .addComponent(jLabelRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelGerenciador, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25)
-                        .addComponent(jLabelSEMFUNCAO, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabelRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -328,6 +391,22 @@ public class TelaInicial extends javax.swing.JFrame {
     private void jLabelMinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMinimizeMouseClicked
         this.setState(this.ICONIFIED);
     }//GEN-LAST:event_jLabelMinimizeMouseClicked
+
+    private void jLabelHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelHomeMouseClicked
+        changePanel(EnumPanel.HOME);
+    }//GEN-LAST:event_jLabelHomeMouseClicked
+
+    private void jLabelVoosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelVoosMouseClicked
+        changePanel(EnumPanel.VOOS);
+    }//GEN-LAST:event_jLabelVoosMouseClicked
+
+    private void jLabelGerenciadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelGerenciadorMouseClicked
+        changePanel(EnumPanel.GERENCIADOR);
+    }//GEN-LAST:event_jLabelGerenciadorMouseClicked
+
+    private void jLabelRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelRegistrosMouseClicked
+        changePanel(EnumPanel.REGISTROS);
+    }//GEN-LAST:event_jLabelRegistrosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -368,12 +447,12 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelCadastro;
     private javax.swing.JLabel jLabelDesktopTitle;
     private javax.swing.JLabel jLabelExit;
+    private javax.swing.JLabel jLabelGerenciador;
     private javax.swing.JLabel jLabelHome;
     private javax.swing.JLabel jLabelLogo;
     private javax.swing.JLabel jLabelMaximize;
     private javax.swing.JLabel jLabelMinimize;
     private javax.swing.JLabel jLabelRegistros;
-    private javax.swing.JLabel jLabelSEMFUNCAO;
     private javax.swing.JLabel jLabelVoos;
     private javax.swing.JPanel jPanelBackground;
     private javax.swing.JPanel jPanelDesktop;

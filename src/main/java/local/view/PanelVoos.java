@@ -74,7 +74,7 @@ public class PanelVoos extends javax.swing.JPanel {
         jPanelDesktop.setLayout(jPanelDesktopLayout);
         jPanelDesktopLayout.setHorizontalGroup(
             jPanelDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 644, Short.MAX_VALUE)
+            .addGap(0, 452, Short.MAX_VALUE)
         );
         jPanelDesktopLayout.setVerticalGroup(
             jPanelDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
