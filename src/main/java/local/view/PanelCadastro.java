@@ -19,9 +19,6 @@ public class PanelCadastro extends javax.swing.JPanel {
         initComponents();
         new TemplateDosPaineis(this.jPanelBackground);
         this.telaInicial = telaInicial;
-        cadastroPassageiro = new PanelCadastroPassageiro();
-        this.jPanelDesktop.add(cadastroPassageiro);
-
         this.jPanelDesktop.setLayout(new BorderLayout());
         this.enumCurrentPanel = null;
 
