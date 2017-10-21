@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package local.util;
 
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 
-/**
- *
- * @author Yuri
- */
 public class LabelButtonAnimationMouseListener implements java.awt.event.MouseListener {
 
     private final JLabel jLabel;
