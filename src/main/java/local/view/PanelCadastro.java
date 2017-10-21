@@ -1,9 +1,8 @@
 package local.view;
 
 import java.awt.BorderLayout;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import local.model.LabelButtonAnimationMouseListener;
+import local.model.TemplateDosPaineis;
 
 /**
  *
@@ -22,14 +21,7 @@ public class PanelCadastro extends javax.swing.JPanel {
 
     public PanelCadastro(TelaInicial telaInicial) {
         initComponents();
-        for (int i = 0; i < this.jPanelBackground.getComponentCount(); i++) {
-            try {
-                if (this.jPanelBackground.getComponent(i).getName().equals("botao")) {
-                    this.jPanelBackground.getComponent(i).addMouseListener(new LabelButtonAnimationMouseListener((JLabel) this.jPanelBackground.getComponent(i)));
-                }
-            } catch (Exception e) {
-            }
-        }
+        new TemplateDosPaineis(this.jPanelBackground);
         this.telaInicial = telaInicial;
         cadastroPassageiro = new PanelCadastroPassageiro();
         this.jPanelDesktop.add(cadastroPassageiro);

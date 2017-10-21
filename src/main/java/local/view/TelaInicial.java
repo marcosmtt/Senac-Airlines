@@ -4,9 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import local.model.LabelButtonAnimationMouseListener;
+import local.model.TemplateDosPaineis;
 
 /**
  *
@@ -15,7 +14,7 @@ import local.model.LabelButtonAnimationMouseListener;
 public class TelaInicial extends javax.swing.JFrame {
 
     private boolean isMaximized;
-    private int frameSizeInitialSize;
+    private final int frameSizeInitialSize;
 
     private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -29,61 +28,69 @@ public class TelaInicial extends javax.swing.JFrame {
 
     public TelaInicial() {
         initComponents();
-//        for (int i = 0; i < this.jPanelBackground.getComponentCount(); i++) {
-//            try {
-//                if (this.jPanelBackground.getComponent(i).getName().equals("botao")) {
-//                    this.jPanelBackground.getComponent(i).addMouseListener(new LabelButtonAnimationMouseListener((JLabel) this.jPanelBackground.getComponent(i)));
-//                }
-//            } catch (Exception e) {
-//            }
-//        }
-//        //PAINEIS DA TELA INICIAL
-//        this.jPanelDesktop.setLayout(new BorderLayout());
-//        cadastroPanel = new PanelCadastro(this);
-//        this.cadastroPanel.setVisible(false);
-//
-//        this.jPanelDesktop.add(cadastroPanel, BorderLayout.CENTER);
-//        //--
-//        this.frameSizeInitialSize = getState();
-////        this.setBounds(new Rectangle(screenSize));
-//        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-//        isMaximized = true;
-//
-//        this.enumCurrentPanel = EnumPanel.HOME;
-//        this.currentJPanel = cadastroPanel;
-//        this.paintComponents(this.getGraphics());
+        new TemplateDosPaineis(this.jPanelBackground);
+        //PAINEIS DA TELA INICIAL
+        this.jPanelDesktop.setLayout(new BorderLayout());
+        cadastroPanel = new PanelCadastro(this);
+        this.cadastroPanel.setVisible(false);
+
+        this.jPanelDesktop.add(cadastroPanel, BorderLayout.CENTER);
+        //--
+        this.frameSizeInitialSize = getState();
+//        this.setBounds(new Rectangle(screenSize));
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        isMaximized = true;
+
+        this.enumCurrentPanel = EnumPanel.HOME;
+        this.currentJPanel = cadastroPanel;
+        this.paintComponents(this.getGraphics());
     }
-//
-//    private void changePanel(EnumPanel panelName) {
-//
-//        if (panelName == EnumPanel.CADASTRO) {
-//            this.enumCurrentPanel = EnumPanel.CADASTRO;
-//            refreshPanels();
-//            System.out.println("ka");
-//        }
-//
-//    }
-//
-//    private void refreshPanels() {
-//        this.currentJPanel.setVisible(false);
-//
-//        if (enumCurrentPanel == EnumPanel.CADASTRO) {
-//            this.currentJPanel = cadastroPanel;
-//        }
-//
-//        this.currentJPanel.setVisible(true);
-//    }
-//
-//    private void maximize() {
-//        if (isMaximized) {
-//            this.setExtendedState(frameSizeInitialSize);
-////             this.setBounds(new Rectangle(700, 700));
-//            isMaximized = false;
-//        } else {
-//            this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-//            isMaximized = true;
-//        }
-//    }
+
+    private void changePanel(EnumPanel panelName) {
+
+        if (panelName == EnumPanel.CADASTRO) {
+            this.enumCurrentPanel = EnumPanel.CADASTRO;
+            refreshPanels();
+            System.out.println("ka");
+        }
+
+    }
+
+    private void refreshPanels() {
+        this.currentJPanel.setVisible(false);
+
+        if (enumCurrentPanel == EnumPanel.CADASTRO) {
+            this.currentJPanel = cadastroPanel;
+        }
+
+        this.currentJPanel.setVisible(true);
+    }
+
+    private void maximize() {
+        if (isMaximized) {
+            this.dispose();
+            this.setUndecorated(false);
+            this.setResizable(true);
+            this.pack();
+            setVisible(true);
+            this.setExtendedState(frameSizeInitialSize);
+            this.setLocationRelativeTo(null);
+//             this.setBounds(new Rectangle(700, 700));
+            this.jLabelExit.setVisible(false);
+            this.jLabelMinimize.setVisible(false);
+            isMaximized = false;
+        } else {
+            this.dispose();
+            this.setUndecorated(true);
+            this.setResizable(false);
+            this.pack();
+            setVisible(true);
+            this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            this.jLabelExit.setVisible(true);
+            this.jLabelMinimize.setVisible(true);
+            isMaximized = true;
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -103,6 +110,9 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabelMinimize = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("SENAC - Airlines");
+        setUndecorated(true);
+        setResizable(false);
 
         jPanelBackground.setBackground(new java.awt.Color(3, 54, 99));
 
@@ -287,6 +297,7 @@ public class TelaInicial extends javax.swing.JFrame {
         getContentPane().add(jPanelBackground, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabelHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelHomeMouseEntered
@@ -303,6 +314,8 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void jLabelMaximizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMaximizeMouseClicked
         // TODO add your handling code here:
+        maximize();
+        maximize();
         maximize();
     }//GEN-LAST:event_jLabelMaximizeMouseClicked
 

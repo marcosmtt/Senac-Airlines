@@ -5,8 +5,7 @@
  */
 package local.view;
 
-import javax.swing.JLabel;
-import local.model.LabelButtonAnimationMouseListener;
+import local.model.TemplateDosPaineis;
 
 /**
  *
@@ -19,14 +18,7 @@ public class PanelCadastroPassageiro extends javax.swing.JPanel {
      */
     public PanelCadastroPassageiro() {
         initComponents();
-        for (int i = 0; i < this.jPanelBackground.getComponentCount(); i++) {
-            try {
-                if (this.jPanelBackground.getComponent(i).getName().equals("botao")) {
-                    this.jPanelBackground.getComponent(i).addMouseListener(new LabelButtonAnimationMouseListener((JLabel) this.jPanelBackground.getComponent(i)));
-                }
-            } catch (Exception e) {
-            }
-        }
+        new TemplateDosPaineis(this.jPanelBackground);
     }
 
     /**
