@@ -6,7 +6,6 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import local.model.TemplateDosPaineis;
-import local.model.VoosGraphics;
 
 public class TelaInicial extends javax.swing.JFrame {
 
