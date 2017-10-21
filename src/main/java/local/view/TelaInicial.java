@@ -8,10 +8,6 @@ import javax.swing.JPanel;
 import local.model.TemplateDosPaineis;
 import local.model.VoosGraphics;
 
-/**
- *
- * @author Yuri
- */
 public class TelaInicial extends javax.swing.JFrame {
 
     private boolean isMaximized;
