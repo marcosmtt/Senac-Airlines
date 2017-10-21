@@ -144,18 +144,20 @@ public class TelaInicial extends javax.swing.JFrame {
         );
 
         jLabelVoos.setBackground(new java.awt.Color(44, 102, 152));
-        jLabelVoos.setFont(new java.awt.Font("Gisha", 1, 22)); // NOI18N
+        jLabelVoos.setFont(new java.awt.Font("Gisha", 1, 17)); // NOI18N
         jLabelVoos.setForeground(new java.awt.Color(232, 233, 232));
         jLabelVoos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelVoos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8_Runway_25px.png"))); // NOI18N
         jLabelVoos.setText("VOOS");
         jLabelVoos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelVoos.setName("botao"); // NOI18N
         jLabelVoos.setOpaque(true);
 
         jLabelHome.setBackground(new java.awt.Color(44, 102, 152));
-        jLabelHome.setFont(new java.awt.Font("Gisha", 1, 22)); // NOI18N
+        jLabelHome.setFont(new java.awt.Font("Gisha", 1, 17)); // NOI18N
         jLabelHome.setForeground(new java.awt.Color(232, 233, 232));
         jLabelHome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8_Airplane_Take_Off_25px.png"))); // NOI18N
         jLabelHome.setText("HOME");
         jLabelHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelHome.setName("botao"); // NOI18N
@@ -167,18 +169,20 @@ public class TelaInicial extends javax.swing.JFrame {
         });
 
         jLabelRegistros.setBackground(new java.awt.Color(44, 102, 152));
-        jLabelRegistros.setFont(new java.awt.Font("Gisha", 1, 22)); // NOI18N
+        jLabelRegistros.setFont(new java.awt.Font("Gisha", 1, 17)); // NOI18N
         jLabelRegistros.setForeground(new java.awt.Color(232, 233, 232));
         jLabelRegistros.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelRegistros.setText("REGISTROS");
+        jLabelRegistros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8_Autopilot_25px.png"))); // NOI18N
+        jLabelRegistros.setText("GERENCIADOR");
         jLabelRegistros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelRegistros.setName("botao"); // NOI18N
         jLabelRegistros.setOpaque(true);
 
         jLabelCadastro.setBackground(new java.awt.Color(44, 102, 152));
-        jLabelCadastro.setFont(new java.awt.Font("Gisha", 1, 22)); // NOI18N
+        jLabelCadastro.setFont(new java.awt.Font("Gisha", 1, 17)); // NOI18N
         jLabelCadastro.setForeground(new java.awt.Color(232, 233, 232));
         jLabelCadastro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8_Form_25px.png"))); // NOI18N
         jLabelCadastro.setText("CADASTRO");
         jLabelCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelCadastro.setName("botao"); // NOI18N
@@ -190,10 +194,11 @@ public class TelaInicial extends javax.swing.JFrame {
         });
 
         jLabelSEMFUNCAO.setBackground(new java.awt.Color(44, 102, 152));
-        jLabelSEMFUNCAO.setFont(new java.awt.Font("Gisha", 1, 22)); // NOI18N
+        jLabelSEMFUNCAO.setFont(new java.awt.Font("Gisha", 1, 17)); // NOI18N
         jLabelSEMFUNCAO.setForeground(new java.awt.Color(232, 233, 232));
         jLabelSEMFUNCAO.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelSEMFUNCAO.setText("CADASTRO");
+        jLabelSEMFUNCAO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8_Filing_Cabinet_25px.png"))); // NOI18N
+        jLabelSEMFUNCAO.setText("REGISTROS");
         jLabelSEMFUNCAO.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelSEMFUNCAO.setName("botao"); // NOI18N
         jLabelSEMFUNCAO.setOpaque(true);
