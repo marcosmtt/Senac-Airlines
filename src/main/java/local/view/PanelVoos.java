@@ -4,10 +4,6 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import local.model.TemplateDosPaineis;
 
-/**
- *
- * @author Yuri
- */
 public class PanelVoos extends javax.swing.JPanel {
 
     private TelaInicial telaInicial;
