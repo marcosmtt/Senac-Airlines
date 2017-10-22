@@ -1,16 +1,15 @@
 package local.view;
 
 import java.awt.Rectangle;
-import java.awt.Toolkit;
 
 public class PanelVoos extends javax.swing.JPanel {
+
     private boolean isMaximized;
     private Rectangle iniSize = this.getBounds();
 
     public PanelVoos() {
         initComponents();
     }
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -110,7 +109,7 @@ public class PanelVoos extends javax.swing.JPanel {
         jLabelDesktopTitle5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelDesktopTitle5.setOpaque(true);
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(50, 50, 50));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
@@ -169,7 +168,7 @@ public class PanelVoos extends javax.swing.JPanel {
                     .addComponent(jLabel7)))
         );
 
-        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setBackground(new java.awt.Color(50, 50, 50));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(204, 204, 204));
@@ -263,7 +262,7 @@ public class PanelVoos extends javax.swing.JPanel {
         jLabelDesktopTitle8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelDesktopTitle8.setOpaque(true);
 
-        jPanel3.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel3.setBackground(new java.awt.Color(50, 50, 50));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(204, 204, 204));
@@ -322,7 +321,7 @@ public class PanelVoos extends javax.swing.JPanel {
                     .addComponent(jLabel11)))
         );
 
-        jPanel5.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel5.setBackground(new java.awt.Color(50, 50, 50));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(204, 204, 204));
@@ -381,7 +380,7 @@ public class PanelVoos extends javax.swing.JPanel {
                     .addComponent(jLabel19)))
         );
 
-        jPanel6.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel6.setBackground(new java.awt.Color(50, 50, 50));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(204, 204, 204));
@@ -446,7 +445,7 @@ public class PanelVoos extends javax.swing.JPanel {
                     .addComponent(jLabel42)))
         );
 
-        jPanel7.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel7.setBackground(new java.awt.Color(50, 50, 50));
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(204, 204, 204));
@@ -518,7 +517,7 @@ public class PanelVoos extends javax.swing.JPanel {
         jLabelDesktopTitle9.setText("Aviões ON -> 2/4");
         jLabelDesktopTitle9.setOpaque(true);
 
-        jPanel8.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel8.setBackground(new java.awt.Color(50, 50, 50));
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(204, 204, 204));
@@ -596,7 +595,7 @@ public class PanelVoos extends javax.swing.JPanel {
         jLabelDesktopTitle10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelDesktopTitle10.setOpaque(true);
 
-        jPanel9.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel9.setBackground(new java.awt.Color(50, 50, 50));
 
         jLabel49.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel49.setForeground(new java.awt.Color(204, 204, 204));
@@ -785,10 +784,6 @@ public class PanelVoos extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -811,8 +806,6 @@ public class PanelVoos extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
@@ -850,7 +843,6 @@ public class PanelVoos extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;

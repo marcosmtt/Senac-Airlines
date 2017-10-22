@@ -69,41 +69,51 @@ public class TelaInicial extends javax.swing.JFrame {
 
         refreshPanels();
     }
+    
+    public void setNavTxt(String txt) {
+        this.jLabelDesktopTitle.setText(txt);
+    }
 
     private void refreshPanels() {
         this.currentJPanel.setVisible(false);
         this.jPanelDesktop.removeAll();
 
-        if (enumCurrentPanel == EnumPanel.HOME) {
-//            this.currentJPanel = voosPanel;
-            this.jLabelDesktopTitle.setText("HOME");
-            this.jLabelDesktopTitle.setIcon(this.jLabelHome.getIcon());
-        }
-        if (enumCurrentPanel == EnumPanel.VOOS) {
-            this.currentJPanel = voosPanel;
-            this.jLabelDesktopTitle.setText("VOOS");
-            this.jLabelDesktopTitle.setIcon(this.jLabelVoos.getIcon());
-            this.jPanelDesktop.add(voosPanel, BorderLayout.CENTER);
-        }
-        if (enumCurrentPanel == EnumPanel.CADASTRO) {
-            this.currentJPanel = cadastroPanel;
-            this.jLabelDesktopTitle.setText("CADASTRO");
-            this.jLabelDesktopTitle.setIcon(this.jLabelCadastro.getIcon());
-            this.jPanelDesktop.add(cadastroPanel, BorderLayout.CENTER);
-        }
-        if (enumCurrentPanel == EnumPanel.GERENCIADOR) {
-//            this.currentJPanel = voosPanel;
-            this.jLabelDesktopTitle.setText("GERENCIADOR");
-            this.jLabelDesktopTitle.setIcon(this.jLabelGerenciador.getIcon());
-        }
-        if (enumCurrentPanel == EnumPanel.REGISTROS) {
-//            this.currentJPanel = voosPanel;
-            this.jLabelDesktopTitle.setText("REGISTROS");
-            this.jLabelDesktopTitle.setIcon(this.jLabelRegistros.getIcon());
+        if (null != enumCurrentPanel) {
+            switch (enumCurrentPanel) {
+                case HOME:
+                    //            this.currentJPanel = voosPanel;
+                    setNavTxt("HOME");
+                    this.jLabelDesktopTitle.setIcon(this.jLabelHome.getIcon());
+                    break;
+                case VOOS:
+                    this.currentJPanel = voosPanel;
+                    setNavTxt("VOOS");
+                    this.jLabelDesktopTitle.setIcon(this.jLabelVoos.getIcon());
+                    this.jPanelDesktop.add(voosPanel, BorderLayout.CENTER);
+                    break;
+                case CADASTRO:
+                    this.currentJPanel = cadastroPanel;
+                    setNavTxt("CADASTRO");
+                    this.jLabelDesktopTitle.setIcon(this.jLabelCadastro.getIcon());
+                    this.jPanelDesktop.add(cadastroPanel, BorderLayout.CENTER);
+                    break;
+                case GERENCIADOR:
+                    //            this.currentJPanel = voosPanel;
+                    setNavTxt("GERENCIADOR");
+                    this.jLabelDesktopTitle.setIcon(this.jLabelGerenciador.getIcon());
+                    break;
+                case REGISTROS:
+                    //            this.currentJPanel = voosPanel;
+                    this.jLabelDesktopTitle.setText("REGISTROS");
+                    this.jLabelDesktopTitle.setIcon(this.jLabelRegistros.getIcon());
+                    break;
+                default:
+                    break;
+            }
         }
 
         this.currentJPanel.setVisible(true);
-        this.paintComponents(this.getGraphics());
+        this.jPanelDesktop.paintComponents(this.jPanelDesktop.getGraphics());
 
     }
 
