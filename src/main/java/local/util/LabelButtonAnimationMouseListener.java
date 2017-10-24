@@ -9,8 +9,8 @@ public class LabelButtonAnimationMouseListener implements java.awt.event.MouseLi
     private final JLabel jLabel;
     private final Color COLOR_BACKGROUND_DEFAULT;
     private final Color COLOR_FONT_DEFAULT;
-    private final Color COLOR_BACKGROUND_NEW = new Color(61, 113, 160);
-    private final Color COLOR_FONT_NEW = Color.BLACK;
+    private final Color COLOR_BACKGROUND_NEW = new Color(55, 130, 190);
+    private final Color COLOR_FONT_NEW = new Color(255, 255, 255);
     private boolean isMouseOver;
 
     public LabelButtonAnimationMouseListener(JLabel label) {
