@@ -8,10 +8,13 @@ public class PanelCadastro extends javax.swing.JPanel {
 
     private TelaInicial telaInicial;
     private JPanel currentJPanel;
+
     private PanelCadastroPassageiro cadastroPassageiro;
+    private PanelCadastroAviao cadastroAviao;
+    private PanelCadastroDestino cadastroDestino;
 
     private enum EnumPanel {
-        PASSAGEIRO, AVIAO, VOOS, BAGAGEM
+        PASSAGEIRO, AVIAO, VOOS, BAGAGEM, DESTINO
     }
     private EnumPanel enumCurrentPanel;
 
@@ -19,17 +22,17 @@ public class PanelCadastro extends javax.swing.JPanel {
         initComponents();
         new TemplateDosPaineis(this.jPanelBackground);
         this.telaInicial = telaInicial;
-        cadastroPassageiro = new PanelCadastroPassageiro();
-        this.jPanelDesktop.add(cadastroPassageiro);
-
         this.jPanelDesktop.setLayout(new BorderLayout());
         this.enumCurrentPanel = null;
 
-        //PAINEIS DA TELA INICIAL
+        //PAINEIS DE CADASTRO
         cadastroPassageiro = new PanelCadastroPassageiro();
+        cadastroAviao = new PanelCadastroAviao();
+        cadastroDestino = new PanelCadastroDestino();
 
-        this.jPanelDesktop.add(cadastroPassageiro, BorderLayout.CENTER);
         this.cadastroPassageiro.setVisible(false);
+        this.cadastroAviao.setVisible(false);
+        this.cadastroDestino.setVisible(false);
 
         this.currentJPanel = cadastroPassageiro;
         //--
@@ -38,18 +41,48 @@ public class PanelCadastro extends javax.swing.JPanel {
 
     private void changePanel(EnumPanel panelName) {
 
-        if (panelName == EnumPanel.PASSAGEIRO) {
-            this.enumCurrentPanel = EnumPanel.PASSAGEIRO;
-            refreshPanels();
+        if (null != panelName) {
+            switch (panelName) {
+                case PASSAGEIRO:
+                    this.enumCurrentPanel = EnumPanel.PASSAGEIRO;
+                    telaInicial.setNavTxt("CADASTRO --> PASSAGEIRO");
+                    break;
+                case DESTINO:
+                    this.enumCurrentPanel = EnumPanel.DESTINO;
+                    telaInicial.setNavTxt("CADASTRO --> DESTINO");
+                    break;
+                case AVIAO:
+                    this.enumCurrentPanel = EnumPanel.AVIAO;
+                    telaInicial.setNavTxt("CADASTRO --> AVIAO");
+                    break;
+                default:
+                    break;
+            }
         }
 
+        refreshPanels();
     }
 
     private void refreshPanels() {
         this.currentJPanel.setVisible(false);
 
-        if (enumCurrentPanel == EnumPanel.PASSAGEIRO) {
-            this.currentJPanel = cadastroPassageiro;
+        if (null != enumCurrentPanel) {
+            switch (enumCurrentPanel) {
+                case PASSAGEIRO:
+                    this.currentJPanel = cadastroPassageiro;
+                    this.jPanelDesktop.add(cadastroPassageiro, BorderLayout.CENTER);
+                    break;
+                case DESTINO:
+                    this.currentJPanel = cadastroDestino;
+                    this.jPanelDesktop.add(cadastroDestino, BorderLayout.CENTER);
+                    break;
+                case AVIAO:
+                    this.currentJPanel = cadastroAviao;
+                    this.jPanelDesktop.add(cadastroAviao, BorderLayout.CENTER);
+                    break;
+                default:
+                    break;
+            }
         }
 
         this.currentJPanel.setVisible(true);
@@ -62,9 +95,9 @@ public class PanelCadastro extends javax.swing.JPanel {
         jPanelBackground = new javax.swing.JPanel();
         jLabelPassageiro = new javax.swing.JLabel();
         jLabelDestino = new javax.swing.JLabel();
-        jLabelAviao = new javax.swing.JLabel();
         jLabelBagagem = new javax.swing.JLabel();
         jPanelDesktop = new javax.swing.JPanel();
+        jLabelAviao = new javax.swing.JLabel();
 
         jPanelBackground.setBackground(new java.awt.Color(44, 102, 152));
 
@@ -72,7 +105,7 @@ public class PanelCadastro extends javax.swing.JPanel {
         jLabelPassageiro.setFont(new java.awt.Font("Gisha", 1, 18)); // NOI18N
         jLabelPassageiro.setForeground(new java.awt.Color(232, 233, 232));
         jLabelPassageiro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelPassageiro.setText("PASSAGEIRO");
+        jLabelPassageiro.setText("CLIENTE/PASSAGEIRO");
         jLabelPassageiro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(36, 89, 133), 1, true));
         jLabelPassageiro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelPassageiro.setName("botao"); // NOI18N
@@ -92,16 +125,11 @@ public class PanelCadastro extends javax.swing.JPanel {
         jLabelDestino.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelDestino.setName("botao"); // NOI18N
         jLabelDestino.setOpaque(true);
-
-        jLabelAviao.setBackground(new java.awt.Color(61, 113, 160));
-        jLabelAviao.setFont(new java.awt.Font("Gisha", 1, 18)); // NOI18N
-        jLabelAviao.setForeground(new java.awt.Color(232, 233, 232));
-        jLabelAviao.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelAviao.setText("AVIAO");
-        jLabelAviao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(36, 89, 133), 1, true));
-        jLabelAviao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabelAviao.setName("botao"); // NOI18N
-        jLabelAviao.setOpaque(true);
+        jLabelDestino.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelDestinoMouseClicked(evt);
+            }
+        });
 
         jLabelBagagem.setBackground(new java.awt.Color(61, 113, 160));
         jLabelBagagem.setFont(new java.awt.Font("Gisha", 1, 18)); // NOI18N
@@ -123,26 +151,40 @@ public class PanelCadastro extends javax.swing.JPanel {
         );
         jPanelDesktopLayout.setVerticalGroup(
             jPanelDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
+            .addGap(0, 274, Short.MAX_VALUE)
         );
+
+        jLabelAviao.setBackground(new java.awt.Color(61, 113, 160));
+        jLabelAviao.setFont(new java.awt.Font("Gisha", 1, 18)); // NOI18N
+        jLabelAviao.setForeground(new java.awt.Color(232, 233, 232));
+        jLabelAviao.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelAviao.setText("AVIAO");
+        jLabelAviao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(36, 89, 133), 1, true));
+        jLabelAviao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelAviao.setName("botao"); // NOI18N
+        jLabelAviao.setOpaque(true);
+        jLabelAviao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelAviaoMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelBackgroundLayout = new javax.swing.GroupLayout(jPanelBackground);
         jPanelBackground.setLayout(jPanelBackgroundLayout);
         jPanelBackgroundLayout.setHorizontalGroup(
             jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBackgroundLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelPassageiro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabelAviao, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabelDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabelBagagem, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanelBackgroundLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jPanelDesktop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelDesktop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanelBackgroundLayout.createSequentialGroup()
+                        .addComponent(jLabelPassageiro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelBagagem, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelAviao, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))
                 .addGap(25, 25, 25))
         );
         jPanelBackgroundLayout.setVerticalGroup(
@@ -155,8 +197,8 @@ public class PanelCadastro extends javax.swing.JPanel {
                     .addComponent(jLabelBagagem, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelAviao, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jPanelDesktop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanelDesktop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -174,6 +216,14 @@ public class PanelCadastro extends javax.swing.JPanel {
     private void jLabelPassageiroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPassageiroMouseClicked
         changePanel(EnumPanel.PASSAGEIRO);
     }//GEN-LAST:event_jLabelPassageiroMouseClicked
+
+    private void jLabelDestinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelDestinoMouseClicked
+        changePanel(EnumPanel.DESTINO);
+    }//GEN-LAST:event_jLabelDestinoMouseClicked
+
+    private void jLabelAviaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAviaoMouseClicked
+        changePanel(EnumPanel.AVIAO);
+    }//GEN-LAST:event_jLabelAviaoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
