@@ -1,6 +1,10 @@
 package local.view;
 
+import javax.persistence.Persistence;
+import javax.swing.JOptionPane;
+import local.controller.AvioesJpaController;
 import local.model.TemplateDosPaineis;
+import local.model.database.Avioes;
 
 public class PanelCadastroAviao extends javax.swing.JPanel {
 
@@ -10,6 +14,28 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
     public PanelCadastroAviao() {
         initComponents();
         new TemplateDosPaineis(this.jPanelBackground);
+    }
+
+    private void cadastrar() {
+        String empresa;
+        String modelo;
+        int velocidade;
+        int capacidade;
+        try {
+            modelo = jTextFieldModelo.getText();
+            empresa = jTextFieldEmpresa.getText();
+            velocidade = Integer.parseInt(jTextFieldVelocidade.getText());
+            capacidade = Integer.parseInt(jTextFieldCapacidade.getText());
+            Avioes aviao = new Avioes(null, empresa, modelo, velocidade, capacidade);
+            JOptionPane.showMessageDialog(jPanelBackground, "obj created");
+            AvioesJpaController jpa = new AvioesJpaController(Persistence.createEntityManagerFactory("myUnit"));
+            JOptionPane.showMessageDialog(jPanelBackground, "jpa created. Adding aviao to database...");
+            jpa.create(aviao);
+            JOptionPane.showMessageDialog(jPanelBackground, "done!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(jPanelBackground, "Valor(es) incorreto(s).");
+        }
+
     }
 
     /**
@@ -25,14 +51,17 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
         jLabelCadastro12 = new javax.swing.JLabel();
         jLabelCadastro13 = new javax.swing.JLabel();
         jLabelCadastrar = new javax.swing.JLabel();
-        jLabelCancelar = new javax.swing.JLabel();
-        jTextFieldModelo = new javax.swing.JTextField();
-        jTextFieldCapacidade = new javax.swing.JTextField();
-        jLabelCadastro17 = new javax.swing.JLabel();
+        jTextFieldEmpresa = new javax.swing.JTextField();
         jTextFieldVelocidade = new javax.swing.JTextField();
+        jLabelCadastro17 = new javax.swing.JLabel();
+        jTextFieldModelo = new javax.swing.JTextField();
         jLabelCadastro18 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
+        jLabelCadastro14 = new javax.swing.JLabel();
+        jTextFieldCapacidade = new javax.swing.JTextField();
+        jLabelCancelar1 = new javax.swing.JLabel();
+        jLabelCancelar2 = new javax.swing.JLabel();
 
         jPanelBackground.setBackground(new java.awt.Color(36, 89, 133));
 
@@ -40,14 +69,14 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
         jLabelCadastro12.setFont(new java.awt.Font("Gisha", 1, 18)); // NOI18N
         jLabelCadastro12.setForeground(new java.awt.Color(232, 233, 232));
         jLabelCadastro12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelCadastro12.setText("Modelo");
+        jLabelCadastro12.setText("Empresa");
         jLabelCadastro12.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabelCadastro13.setBackground(new java.awt.Color(44, 102, 152));
         jLabelCadastro13.setFont(new java.awt.Font("Gisha", 1, 18)); // NOI18N
         jLabelCadastro13.setForeground(new java.awt.Color(232, 233, 232));
         jLabelCadastro13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelCadastro13.setText("Capacidade");
+        jLabelCadastro13.setText("Velocidade");
         jLabelCadastro13.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabelCadastrar.setBackground(new java.awt.Color(61, 113, 160));
@@ -59,35 +88,36 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
         jLabelCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelCadastrar.setName("botao"); // NOI18N
         jLabelCadastrar.setOpaque(true);
+        jLabelCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelCadastrarMouseClicked(evt);
+            }
+        });
 
-        jLabelCancelar.setBackground(new java.awt.Color(61, 113, 160));
-        jLabelCancelar.setFont(new java.awt.Font("Gisha", 0, 18)); // NOI18N
-        jLabelCancelar.setForeground(new java.awt.Color(232, 233, 232));
-        jLabelCancelar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelCancelar.setText("Alterar Selecionado");
-        jLabelCancelar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(36, 89, 133), 1, true));
-        jLabelCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabelCancelar.setName("botao"); // NOI18N
-        jLabelCancelar.setOpaque(true);
+        jTextFieldEmpresa.setBackground(new java.awt.Color(10, 59, 102));
+        jTextFieldEmpresa.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldEmpresa.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldEmpresa.setText("AZUL");
+        jTextFieldEmpresa.setBorder(null);
 
-        jTextFieldModelo.setBackground(new java.awt.Color(10, 59, 102));
-        jTextFieldModelo.setForeground(new java.awt.Color(255, 255, 255));
-        jTextFieldModelo.setBorder(null);
-
-        jTextFieldCapacidade.setBackground(new java.awt.Color(10, 59, 102));
-        jTextFieldCapacidade.setForeground(new java.awt.Color(255, 255, 255));
-        jTextFieldCapacidade.setBorder(null);
+        jTextFieldVelocidade.setBackground(new java.awt.Color(10, 59, 102));
+        jTextFieldVelocidade.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldVelocidade.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldVelocidade.setText("850");
+        jTextFieldVelocidade.setBorder(null);
 
         jLabelCadastro17.setBackground(new java.awt.Color(44, 102, 152));
         jLabelCadastro17.setFont(new java.awt.Font("Gisha", 1, 18)); // NOI18N
         jLabelCadastro17.setForeground(new java.awt.Color(232, 233, 232));
         jLabelCadastro17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelCadastro17.setText("Velocidade");
+        jLabelCadastro17.setText("Modelo");
         jLabelCadastro17.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jTextFieldVelocidade.setBackground(new java.awt.Color(10, 59, 102));
-        jTextFieldVelocidade.setForeground(new java.awt.Color(255, 255, 255));
-        jTextFieldVelocidade.setBorder(null);
+        jTextFieldModelo.setBackground(new java.awt.Color(10, 59, 102));
+        jTextFieldModelo.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldModelo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldModelo.setText("ATR 42-500");
+        jTextFieldModelo.setBorder(null);
 
         jLabelCadastro18.setBackground(new java.awt.Color(44, 102, 152));
         jLabelCadastro18.setFont(new java.awt.Font("Gisha", 1, 18)); // NOI18N
@@ -109,36 +139,74 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
         jList1.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(jList1);
 
+        jLabelCadastro14.setBackground(new java.awt.Color(44, 102, 152));
+        jLabelCadastro14.setFont(new java.awt.Font("Gisha", 1, 18)); // NOI18N
+        jLabelCadastro14.setForeground(new java.awt.Color(232, 233, 232));
+        jLabelCadastro14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelCadastro14.setText("Capacidade");
+        jLabelCadastro14.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jTextFieldCapacidade.setBackground(new java.awt.Color(10, 59, 102));
+        jTextFieldCapacidade.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldCapacidade.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldCapacidade.setText("120");
+        jTextFieldCapacidade.setBorder(null);
+
+        jLabelCancelar1.setBackground(new java.awt.Color(61, 113, 160));
+        jLabelCancelar1.setFont(new java.awt.Font("Gisha", 0, 18)); // NOI18N
+        jLabelCancelar1.setForeground(new java.awt.Color(232, 233, 232));
+        jLabelCancelar1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelCancelar1.setText("Salvar Alteração");
+        jLabelCancelar1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(36, 89, 133), 1, true));
+        jLabelCancelar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelCancelar1.setName("botao"); // NOI18N
+        jLabelCancelar1.setOpaque(true);
+
+        jLabelCancelar2.setBackground(new java.awt.Color(61, 113, 160));
+        jLabelCancelar2.setFont(new java.awt.Font("Gisha", 0, 18)); // NOI18N
+        jLabelCancelar2.setForeground(new java.awt.Color(232, 233, 232));
+        jLabelCancelar2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelCancelar2.setText("Remover Selecionado");
+        jLabelCancelar2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(36, 89, 133), 1, true));
+        jLabelCancelar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelCancelar2.setName("botao"); // NOI18N
+        jLabelCancelar2.setOpaque(true);
+
         javax.swing.GroupLayout jPanelBackgroundLayout = new javax.swing.GroupLayout(jPanelBackground);
         jPanelBackground.setLayout(jPanelBackgroundLayout);
         jPanelBackgroundLayout.setHorizontalGroup(
             jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBackgroundLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelCadastro18)
-                    .addComponent(jScrollPane1))
+                    .addComponent(jLabelCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanelBackgroundLayout.createSequentialGroup()
+                        .addComponent(jLabelCadastro18)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBackgroundLayout.createSequentialGroup()
+                        .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelBackgroundLayout.createSequentialGroup()
+                                .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelCadastro12, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldEmpresa, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelCadastro17, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldModelo, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)))
+                            .addComponent(jLabelCancelar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelBackgroundLayout.createSequentialGroup()
+                                .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelCadastro13, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldVelocidade, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelCadastro14, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldCapacidade, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)))
+                            .addComponent(jLabelCancelar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
-            .addGroup(jPanelBackgroundLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelBackgroundLayout.createSequentialGroup()
-                        .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelCadastro12, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-                            .addComponent(jTextFieldModelo, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelCadastro17, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-                            .addComponent(jTextFieldVelocidade, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelCadastro13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextFieldCapacidade)))
-                    .addGroup(jPanelBackgroundLayout.createSequentialGroup()
-                        .addComponent(jLabelCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabelCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(40, 40, 40))
         );
         jPanelBackgroundLayout.setVerticalGroup(
             jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,24 +218,31 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
                     .addGroup(jPanelBackgroundLayout.createSequentialGroup()
                         .addComponent(jLabelCadastro12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextFieldEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jTextFieldVelocidade, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanelBackgroundLayout.createSequentialGroup()
                             .addComponent(jLabelCadastro17)
                             .addGap(34, 34, 34)))
                     .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextFieldCapacidade, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldVelocidade, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBackgroundLayout.createSequentialGroup()
                             .addComponent(jLabelCadastro13)
+                            .addGap(34, 34, 34)))
+                    .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jTextFieldCapacidade, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanelBackgroundLayout.createSequentialGroup()
+                            .addComponent(jLabelCadastro14)
                             .addGap(34, 34, 34))))
-                .addGap(11, 11, 11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelCadastrar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCadastrar)
-                    .addComponent(jLabelCancelar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                    .addComponent(jLabelCancelar1)
+                    .addComponent(jLabelCancelar2))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -182,18 +257,25 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jLabelCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCadastrarMouseClicked
+        cadastrar();
+    }//GEN-LAST:event_jLabelCadastrarMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabelCadastrar;
     private javax.swing.JLabel jLabelCadastro12;
     private javax.swing.JLabel jLabelCadastro13;
+    private javax.swing.JLabel jLabelCadastro14;
     private javax.swing.JLabel jLabelCadastro17;
     private javax.swing.JLabel jLabelCadastro18;
-    private javax.swing.JLabel jLabelCancelar;
+    private javax.swing.JLabel jLabelCancelar1;
+    private javax.swing.JLabel jLabelCancelar2;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanelBackground;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextFieldCapacidade;
+    private javax.swing.JTextField jTextFieldEmpresa;
     private javax.swing.JTextField jTextFieldModelo;
     private javax.swing.JTextField jTextFieldVelocidade;
     // End of variables declaration//GEN-END:variables
