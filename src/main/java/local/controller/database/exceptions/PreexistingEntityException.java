@@ -1,4 +1,4 @@
-package local.controller.exceptions;
+package local.controller.database.exceptions;
 
 public class PreexistingEntityException extends Exception {
     public PreexistingEntityException(String message, Throwable cause) {

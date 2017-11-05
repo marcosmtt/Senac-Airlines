@@ -2,36 +2,47 @@ package local.view;
 
 import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
+<<<<<<< HEAD
 import local.controller.AvioesDAO;
+=======
+import local.controller.Sistema;
+import local.controller.database.AvioesDAO;
+>>>>>>> 8a3e74c9ea95e58952d33d1998c98610e5bef839
 import local.model.TemplateDosPaineis;
 import local.model.database.Avioes;
 
 public class PanelCadastroAviao extends javax.swing.JPanel {
 
+    private Sistema sist;
+
     /**
      * Creates new form PanelCadastroPassageiro
      */
-    public PanelCadastroAviao() {
+    public PanelCadastroAviao(Sistema sist) {
         initComponents();
+        this.sist = sist;
         new TemplateDosPaineis(this.jPanelBackground);
     }
 
     private void cadastrar() {
-        String empresa;
-        String modelo;
-        int velocidade;
-        int capacidade;
         try {
-            modelo = jTextFieldModelo.getText();
-            empresa = jTextFieldEmpresa.getText();
-            velocidade = Integer.parseInt(jTextFieldVelocidade.getText());
-            capacidade = Integer.parseInt(jTextFieldCapacidade.getText());
+            //pega os valores que estao nas caixas de texto da view
+            String modelo = jTextFieldModelo.getText();
+            String empresa = jTextFieldEmpresa.getText();
+            int velocidade = Integer.parseInt(jTextFieldVelocidade.getText());
+            int capacidade = Integer.parseInt(jTextFieldCapacidade.getText());
+            //cria uma entidade aviao com os valores
             Avioes aviao = new Avioes(null, empresa, modelo, velocidade, capacidade);
+<<<<<<< HEAD
             JOptionPane.showMessageDialog(jPanelBackground, "obj created");
             AvioesDAO jpa = new AvioesDAO(Persistence.createEntityManagerFactory("myUnit"));
             JOptionPane.showMessageDialog(jPanelBackground, "jpa created. Adding aviao to database...");
             jpa.create(aviao);
             JOptionPane.showMessageDialog(jPanelBackground, "done!");
+=======
+            //chama a classe sistema.cadastrar e manda esse aviao pra la
+            sist.cadastrar(aviao);
+>>>>>>> 8a3e74c9ea95e58952d33d1998c98610e5bef839
         } catch (Exception e) {
             JOptionPane.showMessageDialog(jPanelBackground, "Valor(es) incorreto(s).");
         }

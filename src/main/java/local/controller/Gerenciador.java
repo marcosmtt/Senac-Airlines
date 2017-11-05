@@ -2,6 +2,10 @@ package local.controller;
 
 public interface Gerenciador {
 
-    void cadastrar();
+    void cadastrar(Object obj);
+    
+    void alterar(Object obj);
+    
+    void remover(Object obj);
     
 }
