@@ -21,7 +21,7 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
         this.sist = sist;
         Object[] colums = {"ID","EMPRESA", "MODELO", "VELOCIDADE", "CAPACIDADE"};
         this.tm = new DefaultTableModel(colums, 0);
-        this.jTable1.setModel(tm);
+        this.jTableAVIOES.setModel(tm);
         new TemplateDosPaineis(this.jPanelBackground);
         updateList();
     }
@@ -35,7 +35,7 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
             int capacidade = Integer.parseInt(jTextFieldCapacidade.getText());
             //cria uma entidade aviao com os valores
             Avioes aviao = new Avioes(null, empresa, modelo, velocidade, capacidade);
-            //chama a classe sistema.cadastrar e manda esse aviao pra la
+            //chama a classe sistema e manda esse aviao pra la como argumento no metodo cadastrar
             sist.cadastrar(aviao);
             updateList();
         } catch (Exception e) {
@@ -50,6 +50,19 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
             Avioes aviao = (Avioes) x.get(i);
             Object[] row = {aviao.getId(), aviao.getEmpresa(), aviao.getModelo(), aviao.getVelocidade()+"km/h", aviao.getCapacidade()+" passageiros"};
             tm.addRow(row);
+        }
+    }
+    
+    private void remover() {
+        try {
+            int selected = jTableAVIOES.getSelectedRow();
+            if (selected != -1) {
+                int id = (int) jTableAVIOES.getValueAt(selected, 0);
+                sist.jpaAvioes.destroy(id);
+                updateList();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ba meu deu merda");
         }
     }
 
@@ -76,7 +89,7 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
         jLabelCancelar1 = new javax.swing.JLabel();
         jLabelCancelar2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableAVIOES = new javax.swing.JTable();
 
         jPanelBackground.setBackground(new java.awt.Color(36, 89, 133));
 
@@ -173,8 +186,13 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
         jLabelCancelar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelCancelar2.setName("botao"); // NOI18N
         jLabelCancelar2.setOpaque(true);
+        jLabelCancelar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelCancelar2MouseClicked(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableAVIOES.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -185,7 +203,7 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(jTableAVIOES);
 
         javax.swing.GroupLayout jPanelBackgroundLayout = new javax.swing.GroupLayout(jPanelBackground);
         jPanelBackground.setLayout(jPanelBackgroundLayout);
@@ -276,6 +294,10 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
         cadastrar();
     }//GEN-LAST:event_jLabelCadastrarMouseClicked
 
+    private void jLabelCancelar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCancelar2MouseClicked
+        remover();
+    }//GEN-LAST:event_jLabelCancelar2MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabelCadastrar;
@@ -288,7 +310,7 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
     private javax.swing.JLabel jLabelCancelar2;
     private javax.swing.JPanel jPanelBackground;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableAVIOES;
     private javax.swing.JTextField jTextFieldCapacidade;
     private javax.swing.JTextField jTextFieldEmpresa;
     private javax.swing.JTextField jTextFieldModelo;

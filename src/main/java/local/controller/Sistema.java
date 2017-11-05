@@ -13,8 +13,8 @@ public class Sistema implements Gerenciador {
 
     private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("myUnit");
 
-    AvioesDAO jpaAvioes = new AvioesDAO(emf);
-    ClientesDAO jpaClientes = new ClientesDAO(emf);
+    public AvioesDAO jpaAvioes = new AvioesDAO(emf);
+    public ClientesDAO jpaClientes = new ClientesDAO(emf);
 
     @Override
     public void cadastrar(Object obj) {
@@ -42,6 +42,7 @@ public class Sistema implements Gerenciador {
 
     @Override
     public void remover(Object obj) {
+        
     }
 
     @Override
