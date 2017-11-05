@@ -5,10 +5,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "clientes")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Clientes.findAll", query = "SELECT c FROM Clientes c"),
+      @NamedQuery(name = "Clientes.findById", query = "SELECT c FROM Clientes c WHERE c.id = :id"), 
+      @NamedQuery(name = "Clientes.findByPassaporte", query = "SELECT c FROM Clientes c WHERE c.passaporte = :passaporte"), 
+      @NamedQuery(name = "Clientes.findByNome", query = "SELECT c FROM Clientes c WHERE c.nome = :nome"), 
+      @NamedQuery(name = "Clientes.findByRg", query = "SELECT c FROM Clientes c WHERE c.rg = :rg"),
+    })
 public class Clientes implements Serializable {
 
     private static final long serialVersionUID = 1L;

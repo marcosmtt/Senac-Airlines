@@ -2,7 +2,7 @@ package local.view;
 
 import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
-import local.controller.AvioesJpaController;
+import local.controller.AvioesDAO;
 import local.model.TemplateDosPaineis;
 import local.model.database.Avioes;
 
@@ -28,7 +28,7 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
             capacidade = Integer.parseInt(jTextFieldCapacidade.getText());
             Avioes aviao = new Avioes(null, empresa, modelo, velocidade, capacidade);
             JOptionPane.showMessageDialog(jPanelBackground, "obj created");
-            AvioesJpaController jpa = new AvioesJpaController(Persistence.createEntityManagerFactory("myUnit"));
+            AvioesDAO jpa = new AvioesDAO(Persistence.createEntityManagerFactory("myUnit"));
             JOptionPane.showMessageDialog(jPanelBackground, "jpa created. Adding aviao to database...");
             jpa.create(aviao);
             JOptionPane.showMessageDialog(jPanelBackground, "done!");

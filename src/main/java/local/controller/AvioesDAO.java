@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package local.controller;
 
 import java.io.Serializable;
@@ -16,13 +12,9 @@ import javax.persistence.criteria.Root;
 import local.model.database.Avioes;
 import local.controller.exceptions.NonexistentEntityException;
 
-/**
- *
- * @author Yuri
- */
-public class AvioesJpaController implements Serializable {
+public class AvioesDAO implements Serializable {
 
-    public AvioesJpaController(EntityManagerFactory emf) {
+    public AvioesDAO(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
