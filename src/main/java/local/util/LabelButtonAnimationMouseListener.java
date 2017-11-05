@@ -18,7 +18,7 @@ public class LabelButtonAnimationMouseListener implements java.awt.event.MouseLi
         this.COLOR_BACKGROUND_DEFAULT = label.getBackground();
         this.COLOR_FONT_DEFAULT = label.getForeground();
     }
-
+    
     @Override
     public void mousePressed(MouseEvent e) {
         this.jLabel.setBackground(COLOR_BACKGROUND_DEFAULT);
