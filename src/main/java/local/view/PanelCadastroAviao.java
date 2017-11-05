@@ -2,36 +2,33 @@ package local.view;
 
 import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
-import local.controller.AvioesJpaController;
+import local.controller.Sistema;
+import local.controller.database.AvioesDAO;
 import local.model.TemplateDosPaineis;
 import local.model.database.Avioes;
 
 public class PanelCadastroAviao extends javax.swing.JPanel {
 
+    private Sistema sist;
+
     /**
      * Creates new form PanelCadastroPassageiro
      */
-    public PanelCadastroAviao() {
+    public PanelCadastroAviao(Sistema sist) {
         initComponents();
+        this.sist = sist;
         new TemplateDosPaineis(this.jPanelBackground);
     }
 
     private void cadastrar() {
-        String empresa;
-        String modelo;
-        int velocidade;
-        int capacidade;
         try {
-            modelo = jTextFieldModelo.getText();
-            empresa = jTextFieldEmpresa.getText();
-            velocidade = Integer.parseInt(jTextFieldVelocidade.getText());
-            capacidade = Integer.parseInt(jTextFieldCapacidade.getText());
+            String modelo = jTextFieldModelo.getText();
+            String empresa = jTextFieldEmpresa.getText();
+            int velocidade = Integer.parseInt(jTextFieldVelocidade.getText());
+            int capacidade = Integer.parseInt(jTextFieldCapacidade.getText());
+            
             Avioes aviao = new Avioes(null, empresa, modelo, velocidade, capacidade);
-            JOptionPane.showMessageDialog(jPanelBackground, "obj created");
-            AvioesJpaController jpa = new AvioesJpaController(Persistence.createEntityManagerFactory("myUnit"));
-            JOptionPane.showMessageDialog(jPanelBackground, "jpa created. Adding aviao to database...");
-            jpa.create(aviao);
-            JOptionPane.showMessageDialog(jPanelBackground, "done!");
+            sist.cadastrar(aviao);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(jPanelBackground, "Valor(es) incorreto(s).");
         }

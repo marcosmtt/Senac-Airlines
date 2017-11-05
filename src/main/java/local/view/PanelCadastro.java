@@ -27,7 +27,7 @@ public class PanelCadastro extends javax.swing.JPanel {
 
         //PAINEIS DE CADASTRO
         cadastroPassageiro = new PanelCadastroPassageiro();
-        cadastroAviao = new PanelCadastroAviao();
+        cadastroAviao = new PanelCadastroAviao(telaInicial.getSist());
         cadastroDestino = new PanelCadastroDestino();
 
         this.cadastroPassageiro.setVisible(false);

@@ -1,6 +1,7 @@
 package local.model.database;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -106,13 +107,27 @@ public class Avioes implements Serializable {
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Avioes)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Avioes other = (Avioes) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Avioes other = (Avioes) obj;
+        if (this.velocidade != other.velocidade) {
+            return false;
+        }
+        if (this.capacidade != other.capacidade) {
+            return false;
+        }
+        if (!Objects.equals(this.empresa, other.empresa)) {
+            return false;
+        }
+        if (!Objects.equals(this.modelo, other.modelo)) {
             return false;
         }
         return true;
@@ -122,5 +137,5 @@ public class Avioes implements Serializable {
     public String toString() {
         return "local.controller.database.Avioes[ id=" + id + " ]";
     }
-    
+
 }

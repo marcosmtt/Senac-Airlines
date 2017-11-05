@@ -5,10 +5,11 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import local.controller.Sistema;
 import local.model.TemplateDosPaineis;
 
 public class TelaInicial extends javax.swing.JFrame {
-
+    private Sistema sist = new Sistema();
     private boolean isMaximized;
     private final int frameSizeInitialSize;
 
@@ -414,6 +415,11 @@ public class TelaInicial extends javax.swing.JFrame {
         changePanel(EnumPanel.REGISTROS);
     }//GEN-LAST:event_jLabelRegistrosMouseClicked
 
+    public Sistema getSist() {
+        return sist;
+    }
+    
+    
     /**
      * @param args the command line arguments
      */

@@ -1,4 +1,4 @@
-package local.controller.exceptions;
+package local.controller.database.exceptions;
 
 public class NonexistentEntityException extends Exception {
     public NonexistentEntityException(String message, Throwable cause) {

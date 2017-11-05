@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package local.controller;
+package local.controller.database;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,15 +14,15 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import local.model.database.Avioes;
-import local.controller.exceptions.NonexistentEntityException;
+import local.controller.database.exceptions.NonexistentEntityException;
 
 /**
  *
  * @author Yuri
  */
-public class AvioesJpaController implements Serializable {
+public class AvioesDAO implements Serializable {
 
-    public AvioesJpaController(EntityManagerFactory emf) {
+    public AvioesDAO(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -134,5 +134,5 @@ public class AvioesJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

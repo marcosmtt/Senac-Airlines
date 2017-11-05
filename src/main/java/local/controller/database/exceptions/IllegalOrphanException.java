@@ -1,4 +1,4 @@
-package local.controller.exceptions;
+package local.controller.database.exceptions;
 
 import java.util.ArrayList;
 import java.util.List;
