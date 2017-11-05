@@ -22,12 +22,14 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
 
     private void cadastrar() {
         try {
+            //pega os valores que estao nas caixas de texto da view
             String modelo = jTextFieldModelo.getText();
             String empresa = jTextFieldEmpresa.getText();
             int velocidade = Integer.parseInt(jTextFieldVelocidade.getText());
             int capacidade = Integer.parseInt(jTextFieldCapacidade.getText());
-            
+            //cria uma entidade aviao com os valores
             Avioes aviao = new Avioes(null, empresa, modelo, velocidade, capacidade);
+            //chama a classe sistema.cadastrar e manda esse aviao pra la
             sist.cadastrar(aviao);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(jPanelBackground, "Valor(es) incorreto(s).");
