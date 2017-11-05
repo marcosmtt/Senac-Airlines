@@ -1,5 +1,7 @@
 package local.controller;
 
+import java.util.List;
+
 public interface Gerenciador {
 
     void cadastrar(Object obj);
@@ -7,5 +9,7 @@ public interface Gerenciador {
     void alterar(Object obj);
     
     void remover(Object obj);
+    
+    List<Object> select(Object obj);
     
 }
