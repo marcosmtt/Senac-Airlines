@@ -24,7 +24,6 @@ public class Sistema implements Gerenciador {
             //INSERT cliente no banco de dados
             jpaClientes.create((Clientes) obj);
 
-            JOptionPane.showMessageDialog(null, "done!");
         }
 
         //verifica se o tipo do objeto recebido é um aviao
@@ -32,7 +31,6 @@ public class Sistema implements Gerenciador {
             //INSERT aviao no banco de dados
             jpaAvioes.create((Avioes) obj);
 
-            JOptionPane.showMessageDialog(null, "done!");
         }
     }
 
@@ -42,19 +40,19 @@ public class Sistema implements Gerenciador {
 
     @Override
     public void remover(Object obj) {
-        
+
     }
 
     @Override
     public List select(Object obj) {
         if (obj instanceof Clientes) {
-           return jpaClientes.findClientesEntities();
+            return jpaClientes.findClientesEntities();
         }
 
         if (obj instanceof Avioes) {
             return jpaAvioes.findAvioesEntities();
         }
-        
+
         return null;
     }
 

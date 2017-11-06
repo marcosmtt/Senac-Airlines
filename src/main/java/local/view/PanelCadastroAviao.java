@@ -19,7 +19,7 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
     public PanelCadastroAviao(Sistema sist) {
         initComponents();
         this.sist = sist;
-        Object[] colums = {"ID", "EMPRESA", "MODELO", "VELOCIDADE", "CAPACIDADE"};
+        Object[] colums = {"ID", "EMPRESA", "MODELO", "VELOCIDADE(km/h)", "CAPACIDADE(passageiros)"};
         this.tm = new DefaultTableModel(colums, 0);
         this.jTableAVIOES.setModel(tm);
         jTableAVIOES.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -37,6 +37,7 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
     }
 
     private void selectRow() {
+        String id = jTableAVIOES.getValueAt(jTableAVIOES.getSelectedRow(), 0).toString();
         String empresa = jTableAVIOES.getValueAt(jTableAVIOES.getSelectedRow(), 1).toString();
         String modelo = jTableAVIOES.getValueAt(jTableAVIOES.getSelectedRow(), 2).toString();
         String velocidade = jTableAVIOES.getValueAt(jTableAVIOES.getSelectedRow(), 3).toString();
@@ -44,10 +45,17 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
         jTextFieldEmpresa.setText(empresa);
         jTextFieldModelo.setText(modelo);
         jTextFieldVelocidade.setText(velocidade);
-        jTextFieldCapacidade.getText(capacidade);
+        jTextFieldCapacidade.setText(capacidade);
+        jTextFieldID.setText(id);
     }
 
-    private Avioes newAviao() {
+    /**
+     *
+     * @param id
+     * @return retorna um novo aviao se o argumento for um valor != de -1.
+     * retorna um aviao do banco de dados se o argumento for o id
+     */
+    private Avioes newAviao(int id) {
         try {
             //pega os valores que estao nas caixas de texto da view
             String empresa = jTextFieldEmpresa.getText();
@@ -55,9 +63,16 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
             int velocidade = Integer.parseInt(jTextFieldVelocidade.getText());
             int capacidade = Integer.parseInt(jTextFieldCapacidade.getText());
             //cria uma entidade aviao com os valores
-            Avioes aviao = new Avioes(null, empresa, modelo, velocidade, capacidade);
+            Avioes aviao;
+            if (id != -1) {
+                Integer id2 = Integer.valueOf(jTextFieldID.getText());
+                aviao = new Avioes(id2, empresa, modelo, velocidade, capacidade);
+            } else {
+                aviao = new Avioes(null, empresa, modelo, velocidade, capacidade);
+            }
             return aviao;
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Valor(es) incorreto(s).");
             return null;
         }
     }
@@ -65,10 +80,10 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
     private void cadastrar() {
         try {
             //chama a classe sistema e manda esse aviao pra la como argumento no metodo cadastrar
-            sist.cadastrar(newAviao());
+            sist.cadastrar(newAviao(-1));
             updateList();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(jPanelBackground, "Valor(es) incorreto(s).");
+            JOptionPane.showMessageDialog(null, "ba merda aqi meu");
         }
     }
 
@@ -77,7 +92,7 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
         tm.setRowCount(0);
         for (int i = 0; i < x.size(); i++) {
             Avioes aviao = (Avioes) x.get(i);
-            Object[] row = {aviao.getId(), aviao.getEmpresa(), aviao.getModelo(), aviao.getVelocidade() + "km/h", aviao.getCapacidade() + " passageiros"};
+            Object[] row = {aviao.getId(), aviao.getEmpresa(), aviao.getModelo(), aviao.getVelocidade(), aviao.getCapacidade()};
             tm.addRow(row);
         }
     }
@@ -100,11 +115,12 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
             int selected = jTableAVIOES.getSelectedRow();
             if (selected != -1) {
                 int id = (int) jTableAVIOES.getValueAt(selected, 0);
-                sist.jpaAvioes.edit(newAviao());
+                sist.jpaAvioes.edit(newAviao(Integer.parseInt(jTextFieldID.getText())));
+                JOptionPane.showMessageDialog(null, "2");
                 updateList();
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "ba meu deu merda");
+            JOptionPane.showMessageDialog(null, "ba meu deu merdaaaaaaa");
         }
     }
 
@@ -132,6 +148,7 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
         jLabelCancelar2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableAVIOES = new javax.swing.JTable();
+        jTextFieldID = new javax.swing.JTextField();
 
         jPanelBackground.setBackground(new java.awt.Color(36, 89, 133));
 
@@ -252,6 +269,13 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(jTableAVIOES);
 
+        jTextFieldID.setEditable(false);
+        jTextFieldID.setBackground(new java.awt.Color(10, 59, 102));
+        jTextFieldID.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldID.setText("ID");
+        jTextFieldID.setBorder(null);
+
         javax.swing.GroupLayout jPanelBackgroundLayout = new javax.swing.GroupLayout(jPanelBackground);
         jPanelBackground.setLayout(jPanelBackgroundLayout);
         jPanelBackgroundLayout.setHorizontalGroup(
@@ -284,16 +308,23 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
                             .addComponent(jLabelCancelar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanelBackgroundLayout.createSequentialGroup()
                         .addComponent(jLabelCadastro18)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2))
                 .addContainerGap())
         );
         jPanelBackgroundLayout.setVerticalGroup(
             jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBackgroundLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabelCadastro18)
-                .addGap(22, 22, 22)
+                .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelBackgroundLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabelCadastro18)
+                        .addGap(22, 22, 22))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBackgroundLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelBackgroundLayout.createSequentialGroup()
                         .addComponent(jLabelCadastro12)
@@ -364,6 +395,7 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
     private javax.swing.JTable jTableAVIOES;
     private javax.swing.JTextField jTextFieldCapacidade;
     private javax.swing.JTextField jTextFieldEmpresa;
+    private javax.swing.JTextField jTextFieldID;
     private javax.swing.JTextField jTextFieldModelo;
     private javax.swing.JTextField jTextFieldVelocidade;
     // End of variables declaration//GEN-END:variables
