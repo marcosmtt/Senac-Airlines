@@ -19,24 +19,53 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
     public PanelCadastroAviao(Sistema sist) {
         initComponents();
         this.sist = sist;
-        Object[] colums = {"ID","EMPRESA", "MODELO", "VELOCIDADE", "CAPACIDADE"};
+        Object[] colums = {"ID", "EMPRESA", "MODELO", "VELOCIDADE", "CAPACIDADE"};
         this.tm = new DefaultTableModel(colums, 0);
         this.jTableAVIOES.setModel(tm);
+        jTableAVIOES.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int row = jTableAVIOES.rowAtPoint(evt.getPoint());
+                int col = jTableAVIOES.columnAtPoint(evt.getPoint());
+                if (row >= 0 && col >= 0) {
+                    selectRow();
+                }
+            }
+        });
         new TemplateDosPaineis(this.jPanelBackground);
         updateList();
     }
 
-    private void cadastrar() {
+    private void selectRow() {
+        String empresa = jTableAVIOES.getValueAt(jTableAVIOES.getSelectedRow(), 1).toString();
+        String modelo = jTableAVIOES.getValueAt(jTableAVIOES.getSelectedRow(), 2).toString();
+        String velocidade = jTableAVIOES.getValueAt(jTableAVIOES.getSelectedRow(), 3).toString();
+        String capacidade = jTableAVIOES.getValueAt(jTableAVIOES.getSelectedRow(), 4).toString();
+        jTextFieldEmpresa.setText(empresa);
+        jTextFieldModelo.setText(modelo);
+        jTextFieldVelocidade.setText(velocidade);
+        jTextFieldCapacidade.getText(capacidade);
+    }
+
+    private Avioes newAviao() {
         try {
             //pega os valores que estao nas caixas de texto da view
-            String modelo  = jTextFieldModelo.getText();
             String empresa = jTextFieldEmpresa.getText();
+            String modelo = jTextFieldModelo.getText();
             int velocidade = Integer.parseInt(jTextFieldVelocidade.getText());
             int capacidade = Integer.parseInt(jTextFieldCapacidade.getText());
             //cria uma entidade aviao com os valores
             Avioes aviao = new Avioes(null, empresa, modelo, velocidade, capacidade);
+            return aviao;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private void cadastrar() {
+        try {
             //chama a classe sistema e manda esse aviao pra la como argumento no metodo cadastrar
-            sist.cadastrar(aviao);
+            sist.cadastrar(newAviao());
             updateList();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(jPanelBackground, "Valor(es) incorreto(s).");
@@ -48,17 +77,30 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
         tm.setRowCount(0);
         for (int i = 0; i < x.size(); i++) {
             Avioes aviao = (Avioes) x.get(i);
-            Object[] row = {aviao.getId(), aviao.getEmpresa(), aviao.getModelo(), aviao.getVelocidade()+"km/h", aviao.getCapacidade()+" passageiros"};
+            Object[] row = {aviao.getId(), aviao.getEmpresa(), aviao.getModelo(), aviao.getVelocidade() + "km/h", aviao.getCapacidade() + " passageiros"};
             tm.addRow(row);
         }
     }
-    
+
     private void remover() {
         try {
             int selected = jTableAVIOES.getSelectedRow();
             if (selected != -1) {
                 int id = (int) jTableAVIOES.getValueAt(selected, 0);
                 sist.jpaAvioes.destroy(id);
+                updateList();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ba meu deu merda");
+        }
+    }
+
+    private void alterar() {
+        try {
+            int selected = jTableAVIOES.getSelectedRow();
+            if (selected != -1) {
+                int id = (int) jTableAVIOES.getValueAt(selected, 0);
+                sist.jpaAvioes.edit(newAviao());
                 updateList();
             }
         } catch (Exception e) {
@@ -176,6 +218,11 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
         jLabelCancelar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelCancelar1.setName("botao"); // NOI18N
         jLabelCancelar1.setOpaque(true);
+        jLabelCancelar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelCancelar1MouseClicked(evt);
+            }
+        });
 
         jLabelCancelar2.setBackground(new java.awt.Color(61, 113, 160));
         jLabelCancelar2.setFont(new java.awt.Font("Gisha", 0, 18)); // NOI18N
@@ -297,6 +344,10 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
     private void jLabelCancelar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCancelar2MouseClicked
         remover();
     }//GEN-LAST:event_jLabelCancelar2MouseClicked
+
+    private void jLabelCancelar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCancelar1MouseClicked
+        alterar();
+    }//GEN-LAST:event_jLabelCancelar1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
