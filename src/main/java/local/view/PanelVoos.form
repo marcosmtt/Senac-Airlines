@@ -57,7 +57,7 @@
         <Container class="javax.swing.JPanel" name="jPanelDesktop">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="32" green="32" red="32" type="rgb"/>
+              <Color blue="1a" green="19" red="17" type="rgb"/>
             </Property>
           </Properties>
 
@@ -79,40 +79,40 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jPanelLAviao" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabelAviao" min="-2" pref="26" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                              <Component id="jLabelDesktopTitle6" max="32767" attributes="0"/>
+                              <Component id="jLabelAviaoLine" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                              <Component id="jPanel2" linkSize="2" min="-2" max="-2" attributes="0"/>
+                              <Component id="jPanelRAviao" linkSize="2" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                              <Component id="jPanelLAviao1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
                               <Component id="jLabelAviao1" min="-2" pref="26" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                              <Component id="jLabelDesktopTitle7" pref="161" max="32767" attributes="0"/>
+                              <Component id="jLabelAviaoLine1" pref="161" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                              <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
+                              <Component id="jPanelRAviao1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jPanel1" linkSize="2" min="-2" max="-2" attributes="0"/>
+                              <Component id="jPanelLAviao2" linkSize="2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                               <Component id="jLabelAviao2" min="-2" pref="26" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                              <Component id="jLabelDesktopTitle8" max="32767" attributes="0"/>
+                              <Component id="jLabelAviaoLine2" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                              <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
+                              <Component id="jPanelRAviao2" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
+                              <Component id="jPanelLAviao3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabelAviao3" min="-2" pref="26" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                              <Component id="jLabelDesktopTitle10" max="32767" attributes="0"/>
+                              <Component id="jLabelAviaoLine3" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                              <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
+                              <Component id="jPanelRAviao3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -129,42 +129,42 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jLabelAviao" pref="0" max="32767" attributes="0"/>
-                          <Component id="jPanel2" max="32767" attributes="0"/>
+                          <Component id="jPanelRAviao" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="jLabelDesktopTitle6" min="-2" pref="2" max="-2" attributes="0"/>
+                              <Component id="jLabelAviaoLine" min="-2" pref="2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jPanel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelLAviao" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabelAviao1" alignment="0" min="-2" pref="54" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="jLabelDesktopTitle7" min="-2" pref="2" max="-2" attributes="0"/>
+                              <Component id="jLabelAviaoLine1" min="-2" pref="2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-                          <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelLAviao1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelRAviao1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jPanel6" max="32767" attributes="0"/>
+                          <Component id="jPanelRAviao2" max="32767" attributes="0"/>
                           <Component id="jLabelAviao2" alignment="0" pref="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="jLabelDesktopTitle8" min="-2" pref="2" max="-2" attributes="0"/>
+                              <Component id="jLabelAviaoLine2" min="-2" pref="2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelLAviao2" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jPanel8" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jPanelRAviao3" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabelAviao3" alignment="0" pref="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="jLabelDesktopTitle10" min="-2" pref="2" max="-2" attributes="0"/>
+                              <Component id="jLabelAviaoLine3" min="-2" pref="2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jPanel9" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanelLAviao3" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jLabelDesktopTitle5" min="-2" pref="18" max="-2" attributes="0"/>
@@ -176,7 +176,7 @@
             <Component class="javax.swing.JLabel" name="jLabelDesktopTitle">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="32" green="32" red="32" type="rgb"/>
+                  <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Gisha" size="17" style="1"/>
@@ -222,10 +222,10 @@
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
             </Component>
-            <Container class="javax.swing.JPanel" name="jPanel1">
+            <Container class="javax.swing.JPanel" name="jPanelLAviao2">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="32" green="32" red="32" type="rgb"/>
+                  <Color blue="1a" green="19" red="16" type="rgb"/>
                 </Property>
               </Properties>
 
@@ -334,10 +334,10 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel2">
+            <Container class="javax.swing.JPanel" name="jPanelRAviao">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="32" green="32" red="32" type="rgb"/>
+                  <Color blue="1a" green="19" red="16" type="rgb"/>
                 </Property>
               </Properties>
 
@@ -451,7 +451,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="jLabelDesktopTitle6">
+            <Component class="javax.swing.JLabel" name="jLabelAviaoLine">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="99" red="ff" type="rgb"/>
@@ -484,7 +484,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabelDesktopTitle7">
+            <Component class="javax.swing.JLabel" name="jLabelAviaoLine1">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="99" red="ff" type="rgb"/>
@@ -517,7 +517,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabelDesktopTitle8">
+            <Component class="javax.swing.JLabel" name="jLabelAviaoLine2">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="99" red="ff" type="rgb"/>
@@ -532,10 +532,10 @@
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
             </Component>
-            <Container class="javax.swing.JPanel" name="jPanel3">
+            <Container class="javax.swing.JPanel" name="jPanelLAviao">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="32" green="32" red="32" type="rgb"/>
+                  <Color blue="1a" green="19" red="16" type="rgb"/>
                 </Property>
               </Properties>
 
@@ -644,10 +644,10 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel5">
+            <Container class="javax.swing.JPanel" name="jPanelLAviao1">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="32" green="32" red="32" type="rgb"/>
+                  <Color blue="1a" green="19" red="16" type="rgb"/>
                 </Property>
               </Properties>
 
@@ -756,10 +756,10 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel6">
+            <Container class="javax.swing.JPanel" name="jPanelRAviao2">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="32" green="32" red="32" type="rgb"/>
+                  <Color blue="1a" green="19" red="16" type="rgb"/>
                 </Property>
               </Properties>
 
@@ -878,10 +878,10 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel7">
+            <Container class="javax.swing.JPanel" name="jPanelRAviao1">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="32" green="32" red="32" type="rgb"/>
+                  <Color blue="1a" green="19" red="16" type="rgb"/>
                 </Property>
               </Properties>
 
@@ -1003,7 +1003,7 @@
             <Component class="javax.swing.JLabel" name="jLabelDesktopTitle9">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                  <Color blue="12" green="12" red="13" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Gisha" size="10" style="1"/>
@@ -1016,10 +1016,10 @@
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
             </Component>
-            <Container class="javax.swing.JPanel" name="jPanel8">
+            <Container class="javax.swing.JPanel" name="jPanelRAviao3">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="32" green="32" red="32" type="rgb"/>
+                  <Color blue="1a" green="19" red="16" type="rgb"/>
                 </Property>
               </Properties>
 
@@ -1156,7 +1156,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabelDesktopTitle10">
+            <Component class="javax.swing.JLabel" name="jLabelAviaoLine3">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="99" red="ff" type="rgb"/>
@@ -1171,10 +1171,10 @@
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
             </Component>
-            <Container class="javax.swing.JPanel" name="jPanel9">
+            <Container class="javax.swing.JPanel" name="jPanelLAviao3">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="32" green="32" red="32" type="rgb"/>
+                  <Color blue="1a" green="19" red="16" type="rgb"/>
                 </Property>
               </Properties>
 

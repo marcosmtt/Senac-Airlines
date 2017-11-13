@@ -9,7 +9,7 @@ import local.controller.Sistema;
 import local.model.TemplateDosPaineis;
 
 public class TelaInicial extends javax.swing.JFrame {
-    private Sistema sist = new Sistema();
+    private Sistema sistema = new Sistema();
     private boolean isMaximized;
     private final int frameSizeInitialSize;
 
@@ -31,7 +31,7 @@ public class TelaInicial extends javax.swing.JFrame {
         this.jPanelDesktop.setLayout(new BorderLayout());
         //PAINEIS DA TELA INICIAL
         cadastroPanel = new PanelCadastro(this);
-        voosPanel = new PanelVoos();
+        voosPanel = new PanelVoos(sistema);
 
         //--
         this.frameSizeInitialSize = getState();
@@ -416,7 +416,7 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelRegistrosMouseClicked
 
     public Sistema getSist() {
-        return sist;
+        return sistema;
     }
     
     
