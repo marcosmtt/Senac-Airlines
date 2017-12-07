@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Destino.findByAeroporto", query = "SELECT d FROM Destino d WHERE d.aeroporto = :aeroporto")
     , @NamedQuery(name = "Destino.findByPais", query = "SELECT d FROM Destino d WHERE d.pais = :pais")
     , @NamedQuery(name = "Destino.findByEstado", query = "SELECT d FROM Destino d WHERE d.estado = :estado")
-    , @NamedQuery(name = "Destino.findByCidade", query = "SELECT d FROM Destino d WHERE a.cidade = :cidade")})
+    , @NamedQuery(name = "Destino.findByCidade", query = "SELECT d FROM Destino d WHERE d.cidade = :cidade")})
 public class Destino implements Serializable {
 
     private static final long serialVersionUID = 1L;
