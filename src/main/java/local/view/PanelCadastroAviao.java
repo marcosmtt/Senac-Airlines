@@ -102,7 +102,7 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
             int selected = jTableAVIOES.getSelectedRow();
             if (selected != -1) {
                 int id = (int) jTableAVIOES.getValueAt(selected, 0);
-                sist.jpaAvioes.destroy(id);
+                sist.getJpaAvioes().destroy(id);
                 updateList();
             }
         } catch (Exception e) {
@@ -115,7 +115,7 @@ public class PanelCadastroAviao extends javax.swing.JPanel {
             int selected = jTableAVIOES.getSelectedRow();
             if (selected != -1) {
                 int id = (int) jTableAVIOES.getValueAt(selected, 0);
-                sist.jpaAvioes.edit(newAviao(Integer.parseInt(jTextFieldID.getText())));
+                sist.getJpaAvioes().edit(newAviao(Integer.parseInt(jTextFieldID.getText())));
                 JOptionPane.showMessageDialog(null, "2");
                 updateList();
             }

@@ -3,7 +3,6 @@ package local.controller;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.swing.JOptionPane;
 import local.controller.database.AvioesDAO;
 import local.controller.database.ClientesDAO;
 import local.model.database.Avioes;
@@ -13,8 +12,10 @@ public class Sistema implements Gerenciador {
 
     private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("myUnit");
 
-    public AvioesDAO jpaAvioes = new AvioesDAO(emf);
-    public ClientesDAO jpaClientes = new ClientesDAO(emf);
+    private AvioesDAO jpaAvioes = new AvioesDAO(emf);
+    private ClientesDAO jpaClientes = new ClientesDAO(emf);
+
+    private List<Clientes> clienteList;
 
     @Override
     public void cadastrar(Object obj) {
@@ -44,16 +45,26 @@ public class Sistema implements Gerenciador {
     }
 
     @Override
-    public List select(Object obj) {
-        if (obj instanceof Clientes) {
+    public List select(Object instance) {
+        if (instance instanceof Clientes) {
             return jpaClientes.findClientesEntities();
         }
 
-        if (obj instanceof Avioes) {
+        if (instance instanceof Avioes) {
             return jpaAvioes.findAvioesEntities();
         }
 
         return null;
     }
+
+    public AvioesDAO getJpaAvioes() {
+        return jpaAvioes;
+    }
+
+    public ClientesDAO getJpaClientes() {
+        return jpaClientes;
+    }
+    
+    
 
 }

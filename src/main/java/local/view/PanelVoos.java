@@ -1,15 +1,85 @@
 package local.view;
 
-import java.awt.Rectangle;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import local.controller.Sistema;
+import local.model.VoosGraphics;
 
 public class PanelVoos extends javax.swing.JPanel {
 
-    private boolean isMaximized;
-    private Rectangle iniSize = this.getBounds();
-
-    public PanelVoos() {
+    VoosGraphics graphics;
+    
+    public PanelVoos(Sistema sistema) {
         initComponents();
+        graphics = new VoosGraphics(this, sistema);
     }
+
+    public JLabel getjLabelAviao() {
+        return jLabelAviao;
+    }
+
+    public JLabel getjLabelAviao1() {
+        return jLabelAviao1;
+    }
+
+    public JLabel getjLabelAviao2() {
+        return jLabelAviao2;
+    }
+
+    public JLabel getjLabelAviao3() {
+        return jLabelAviao3;
+    }
+
+    public JLabel getjLabelAviaoLine() {
+        return jLabelAviaoLine;
+    }
+
+    public JLabel getjLabelAviaoLine1() {
+        return jLabelAviaoLine1;
+    }
+
+    public JLabel getjLabelAviaoLine2() {
+        return jLabelAviaoLine2;
+    }
+
+    public JLabel getjLabelAviaoLine3() {
+        return jLabelAviaoLine3;
+    }
+
+    public JPanel getjPanelLAviao() {
+        return jPanelLAviao;
+    }
+
+    public JPanel getjPanelLAviao1() {
+        return jPanelLAviao1;
+    }
+
+    public JPanel getjPanelLAviao2() {
+        return jPanelLAviao2;
+    }
+
+    public JPanel getjPanelLAviao3() {
+        return jPanelLAviao3;
+    }
+
+    public JPanel getjPanelRAviao() {
+        return jPanelRAviao;
+    }
+
+    public JPanel getjPanelRAviao1() {
+        return jPanelRAviao1;
+    }
+
+    public JPanel getjPanelRAviao2() {
+        return jPanelRAviao2;
+    }
+
+    public JPanel getjPanelRAviao3() {
+        return jPanelRAviao3;
+    }
+    
+    
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -20,47 +90,47 @@ public class PanelVoos extends javax.swing.JPanel {
         jLabelDesktopTitle = new javax.swing.JLabel();
         jLabelAviao = new javax.swing.JLabel();
         jLabelDesktopTitle5 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        jPanelLAviao2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        jPanelRAviao = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
-        jLabelDesktopTitle6 = new javax.swing.JLabel();
+        jLabelAviaoLine = new javax.swing.JLabel();
         jLabelAviao1 = new javax.swing.JLabel();
-        jLabelDesktopTitle7 = new javax.swing.JLabel();
+        jLabelAviaoLine1 = new javax.swing.JLabel();
         jLabelAviao2 = new javax.swing.JLabel();
-        jLabelDesktopTitle8 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        jLabelAviaoLine2 = new javax.swing.JLabel();
+        jPanelLAviao = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
+        jPanelLAviao1 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
+        jPanelRAviao2 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
+        jPanelRAviao1 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
@@ -68,7 +138,7 @@ public class PanelVoos extends javax.swing.JPanel {
         jLabel44 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
         jLabelDesktopTitle9 = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
+        jPanelRAviao3 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
@@ -76,8 +146,8 @@ public class PanelVoos extends javax.swing.JPanel {
         jLabel47 = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
         jLabelAviao3 = new javax.swing.JLabel();
-        jLabelDesktopTitle10 = new javax.swing.JLabel();
-        jPanel9 = new javax.swing.JPanel();
+        jLabelAviaoLine3 = new javax.swing.JLabel();
+        jPanelLAviao3 = new javax.swing.JPanel();
         jLabel49 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
         jLabel51 = new javax.swing.JLabel();
@@ -87,9 +157,9 @@ public class PanelVoos extends javax.swing.JPanel {
 
         jPanelBackground.setBackground(new java.awt.Color(44, 102, 152));
 
-        jPanelDesktop.setBackground(new java.awt.Color(50, 50, 50));
+        jPanelDesktop.setBackground(new java.awt.Color(23, 25, 26));
 
-        jLabelDesktopTitle.setBackground(new java.awt.Color(50, 50, 50));
+        jLabelDesktopTitle.setBackground(new java.awt.Color(0, 0, 0));
         jLabelDesktopTitle.setFont(new java.awt.Font("Gisha", 1, 17)); // NOI18N
         jLabelDesktopTitle.setForeground(new java.awt.Color(204, 204, 204));
         jLabelDesktopTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -109,7 +179,7 @@ public class PanelVoos extends javax.swing.JPanel {
         jLabelDesktopTitle5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelDesktopTitle5.setOpaque(true);
 
-        jPanel1.setBackground(new java.awt.Color(50, 50, 50));
+        jPanelLAviao2.setBackground(new java.awt.Color(22, 25, 26));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
@@ -135,40 +205,40 @@ public class PanelVoos extends javax.swing.JPanel {
         jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel30.setText("xxxxx");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelLAviao2Layout = new javax.swing.GroupLayout(jPanelLAviao2);
+        jPanelLAviao2.setLayout(jPanelLAviao2Layout);
+        jPanelLAviao2Layout.setHorizontalGroup(
+            jPanelLAviao2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLAviao2Layout.createSequentialGroup()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLAviao2Layout.createSequentialGroup()
+                .addGroup(jPanelLAviao2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelLAviao2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
                     .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jPanelLAviao2Layout.setVerticalGroup(
+            jPanelLAviao2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLAviao2Layout.createSequentialGroup()
+                .addGroup(jPanelLAviao2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel30))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelLAviao2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel29))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelLAviao2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel7)))
         );
 
-        jPanel2.setBackground(new java.awt.Color(50, 50, 50));
+        jPanelRAviao.setBackground(new java.awt.Color(22, 25, 26));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(204, 204, 204));
@@ -194,47 +264,47 @@ public class PanelVoos extends javax.swing.JPanel {
         jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel34.setText("xx:xx");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelRAviaoLayout = new javax.swing.GroupLayout(jPanelRAviao);
+        jPanelRAviao.setLayout(jPanelRAviaoLayout);
+        jPanelRAviaoLayout.setHorizontalGroup(
+            jPanelRAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelRAviaoLayout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanelRAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelRAviaoLayout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelRAviaoLayout.createSequentialGroup()
+                        .addGroup(jPanelRAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelRAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jPanelRAviaoLayout.setVerticalGroup(
+            jPanelRAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelRAviaoLayout.createSequentialGroup()
+                .addGroup(jPanelRAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel31))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelRAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel32))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelRAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel34)))
         );
 
-        jLabelDesktopTitle6.setBackground(new java.awt.Color(255, 153, 0));
-        jLabelDesktopTitle6.setFont(new java.awt.Font("Gisha", 1, 10)); // NOI18N
-        jLabelDesktopTitle6.setForeground(new java.awt.Color(232, 233, 232));
-        jLabelDesktopTitle6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelDesktopTitle6.setOpaque(true);
+        jLabelAviaoLine.setBackground(new java.awt.Color(255, 153, 0));
+        jLabelAviaoLine.setFont(new java.awt.Font("Gisha", 1, 10)); // NOI18N
+        jLabelAviaoLine.setForeground(new java.awt.Color(232, 233, 232));
+        jLabelAviaoLine.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelAviaoLine.setOpaque(true);
 
         jLabelAviao1.setFont(new java.awt.Font("Tahoma", 0, 5)); // NOI18N
         jLabelAviao1.setForeground(new java.awt.Color(255, 255, 255));
@@ -243,11 +313,11 @@ public class PanelVoos extends javax.swing.JPanel {
         jLabelAviao1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabelAviao1.setPreferredSize(new java.awt.Dimension(200, 100));
 
-        jLabelDesktopTitle7.setBackground(new java.awt.Color(255, 153, 0));
-        jLabelDesktopTitle7.setFont(new java.awt.Font("Gisha", 1, 10)); // NOI18N
-        jLabelDesktopTitle7.setForeground(new java.awt.Color(232, 233, 232));
-        jLabelDesktopTitle7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelDesktopTitle7.setOpaque(true);
+        jLabelAviaoLine1.setBackground(new java.awt.Color(255, 153, 0));
+        jLabelAviaoLine1.setFont(new java.awt.Font("Gisha", 1, 10)); // NOI18N
+        jLabelAviaoLine1.setForeground(new java.awt.Color(232, 233, 232));
+        jLabelAviaoLine1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelAviaoLine1.setOpaque(true);
 
         jLabelAviao2.setFont(new java.awt.Font("Tahoma", 0, 5)); // NOI18N
         jLabelAviao2.setForeground(new java.awt.Color(255, 255, 255));
@@ -256,13 +326,13 @@ public class PanelVoos extends javax.swing.JPanel {
         jLabelAviao2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabelAviao2.setPreferredSize(new java.awt.Dimension(200, 100));
 
-        jLabelDesktopTitle8.setBackground(new java.awt.Color(255, 153, 0));
-        jLabelDesktopTitle8.setFont(new java.awt.Font("Gisha", 1, 10)); // NOI18N
-        jLabelDesktopTitle8.setForeground(new java.awt.Color(232, 233, 232));
-        jLabelDesktopTitle8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelDesktopTitle8.setOpaque(true);
+        jLabelAviaoLine2.setBackground(new java.awt.Color(255, 153, 0));
+        jLabelAviaoLine2.setFont(new java.awt.Font("Gisha", 1, 10)); // NOI18N
+        jLabelAviaoLine2.setForeground(new java.awt.Color(232, 233, 232));
+        jLabelAviaoLine2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelAviaoLine2.setOpaque(true);
 
-        jPanel3.setBackground(new java.awt.Color(50, 50, 50));
+        jPanelLAviao.setBackground(new java.awt.Color(22, 25, 26));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(204, 204, 204));
@@ -288,40 +358,40 @@ public class PanelVoos extends javax.swing.JPanel {
         jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel35.setText("xxxxx");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelLAviaoLayout = new javax.swing.GroupLayout(jPanelLAviao);
+        jPanelLAviao.setLayout(jPanelLAviaoLayout);
+        jPanelLAviaoLayout.setHorizontalGroup(
+            jPanelLAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLAviaoLayout.createSequentialGroup()
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLAviaoLayout.createSequentialGroup()
+                .addGroup(jPanelLAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelLAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
                     .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jPanelLAviaoLayout.setVerticalGroup(
+            jPanelLAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLAviaoLayout.createSequentialGroup()
+                .addGroup(jPanelLAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jLabel35))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelLAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jLabel33))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelLAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(jLabel11)))
         );
 
-        jPanel5.setBackground(new java.awt.Color(50, 50, 50));
+        jPanelLAviao1.setBackground(new java.awt.Color(22, 25, 26));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(204, 204, 204));
@@ -347,40 +417,40 @@ public class PanelVoos extends javax.swing.JPanel {
         jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel39.setText("xxxxx");
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelLAviao1Layout = new javax.swing.GroupLayout(jPanelLAviao1);
+        jPanelLAviao1.setLayout(jPanelLAviao1Layout);
+        jPanelLAviao1Layout.setHorizontalGroup(
+            jPanelLAviao1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLAviao1Layout.createSequentialGroup()
                 .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLAviao1Layout.createSequentialGroup()
+                .addGroup(jPanelLAviao1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16)
                     .addComponent(jLabel17))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelLAviao1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel38, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
                     .addComponent(jLabel39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jPanelLAviao1Layout.setVerticalGroup(
+            jPanelLAviao1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLAviao1Layout.createSequentialGroup()
+                .addGroup(jPanelLAviao1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(jLabel39))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelLAviao1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
                     .addComponent(jLabel38))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelLAviao1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(jLabel19)))
         );
 
-        jPanel6.setBackground(new java.awt.Color(50, 50, 50));
+        jPanelRAviao2.setBackground(new java.awt.Color(22, 25, 26));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(204, 204, 204));
@@ -406,46 +476,46 @@ public class PanelVoos extends javax.swing.JPanel {
         jLabel42.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel42.setText("xx:xx");
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelRAviao2Layout = new javax.swing.GroupLayout(jPanelRAviao2);
+        jPanelRAviao2.setLayout(jPanelRAviao2Layout);
+        jPanelRAviao2Layout.setHorizontalGroup(
+            jPanelRAviao2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelRAviao2Layout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanelRAviao2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelRAviao2Layout.createSequentialGroup()
                         .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel42, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelRAviao2Layout.createSequentialGroup()
+                        .addGroup(jPanelRAviao2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel20)
                             .addComponent(jLabel21))
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanelRAviao2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelRAviao2Layout.createSequentialGroup()
                                 .addGap(21, 21, 21)
                                 .addComponent(jLabel40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
+                            .addGroup(jPanelRAviao2Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel41, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jPanelRAviao2Layout.setVerticalGroup(
+            jPanelRAviao2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelRAviao2Layout.createSequentialGroup()
+                .addGroup(jPanelRAviao2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
                     .addComponent(jLabel40))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelRAviao2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
                     .addComponent(jLabel41))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelRAviao2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
                     .addComponent(jLabel42)))
         );
 
-        jPanel7.setBackground(new java.awt.Color(50, 50, 50));
+        jPanelRAviao1.setBackground(new java.awt.Color(22, 25, 26));
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(204, 204, 204));
@@ -471,53 +541,53 @@ public class PanelVoos extends javax.swing.JPanel {
         jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel45.setText("xx:xx");
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelRAviao1Layout = new javax.swing.GroupLayout(jPanelRAviao1);
+        jPanelRAviao1.setLayout(jPanelRAviao1Layout);
+        jPanelRAviao1Layout.setHorizontalGroup(
+            jPanelRAviao1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelRAviao1Layout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanelRAviao1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelRAviao1Layout.createSequentialGroup()
                         .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel45, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelRAviao1Layout.createSequentialGroup()
+                        .addGroup(jPanelRAviao1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel23)
                             .addComponent(jLabel24))
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanelRAviao1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelRAviao1Layout.createSequentialGroup()
                                 .addGap(21, 21, 21)
                                 .addComponent(jLabel43, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel7Layout.createSequentialGroup()
+                            .addGroup(jPanelRAviao1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel44, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jPanelRAviao1Layout.setVerticalGroup(
+            jPanelRAviao1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelRAviao1Layout.createSequentialGroup()
+                .addGroup(jPanelRAviao1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
                     .addComponent(jLabel43))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelRAviao1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24)
                     .addComponent(jLabel44))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelRAviao1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25)
                     .addComponent(jLabel45)))
         );
 
-        jLabelDesktopTitle9.setBackground(new java.awt.Color(0, 0, 0));
+        jLabelDesktopTitle9.setBackground(new java.awt.Color(19, 18, 18));
         jLabelDesktopTitle9.setFont(new java.awt.Font("Gisha", 1, 10)); // NOI18N
         jLabelDesktopTitle9.setForeground(new java.awt.Color(204, 204, 204));
         jLabelDesktopTitle9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelDesktopTitle9.setText("Aviões ON -> 2/4");
         jLabelDesktopTitle9.setOpaque(true);
 
-        jPanel8.setBackground(new java.awt.Color(50, 50, 50));
+        jPanelRAviao3.setBackground(new java.awt.Color(22, 25, 26));
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(204, 204, 204));
@@ -543,41 +613,41 @@ public class PanelVoos extends javax.swing.JPanel {
         jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel48.setText("xx:xx");
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelRAviao3Layout = new javax.swing.GroupLayout(jPanelRAviao3);
+        jPanelRAviao3.setLayout(jPanelRAviao3Layout);
+        jPanelRAviao3Layout.setHorizontalGroup(
+            jPanelRAviao3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelRAviao3Layout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGroup(jPanelRAviao3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelRAviao3Layout.createSequentialGroup()
                         .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel48, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelRAviao3Layout.createSequentialGroup()
+                        .addGroup(jPanelRAviao3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel26)
                             .addComponent(jLabel27))
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGroup(jPanelRAviao3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelRAviao3Layout.createSequentialGroup()
                                 .addGap(21, 21, 21)
                                 .addComponent(jLabel46, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel8Layout.createSequentialGroup()
+                            .addGroup(jPanelRAviao3Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel47, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jPanelRAviao3Layout.setVerticalGroup(
+            jPanelRAviao3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelRAviao3Layout.createSequentialGroup()
+                .addGroup(jPanelRAviao3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel26)
                     .addComponent(jLabel46))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelRAviao3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel27)
                     .addComponent(jLabel47))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelRAviao3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28)
                     .addComponent(jLabel48)))
         );
@@ -589,13 +659,13 @@ public class PanelVoos extends javax.swing.JPanel {
         jLabelAviao3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabelAviao3.setPreferredSize(new java.awt.Dimension(200, 100));
 
-        jLabelDesktopTitle10.setBackground(new java.awt.Color(255, 153, 0));
-        jLabelDesktopTitle10.setFont(new java.awt.Font("Gisha", 1, 10)); // NOI18N
-        jLabelDesktopTitle10.setForeground(new java.awt.Color(232, 233, 232));
-        jLabelDesktopTitle10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelDesktopTitle10.setOpaque(true);
+        jLabelAviaoLine3.setBackground(new java.awt.Color(255, 153, 0));
+        jLabelAviaoLine3.setFont(new java.awt.Font("Gisha", 1, 10)); // NOI18N
+        jLabelAviaoLine3.setForeground(new java.awt.Color(232, 233, 232));
+        jLabelAviaoLine3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelAviaoLine3.setOpaque(true);
 
-        jPanel9.setBackground(new java.awt.Color(50, 50, 50));
+        jPanelLAviao3.setBackground(new java.awt.Color(22, 25, 26));
 
         jLabel49.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel49.setForeground(new java.awt.Color(204, 204, 204));
@@ -621,35 +691,35 @@ public class PanelVoos extends javax.swing.JPanel {
         jLabel54.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel54.setText("xxxxx");
 
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelLAviao3Layout = new javax.swing.GroupLayout(jPanelLAviao3);
+        jPanelLAviao3.setLayout(jPanelLAviao3Layout);
+        jPanelLAviao3Layout.setHorizontalGroup(
+            jPanelLAviao3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLAviao3Layout.createSequentialGroup()
                 .addComponent(jLabel51)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel52, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLAviao3Layout.createSequentialGroup()
+                .addGroup(jPanelLAviao3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel49)
                     .addComponent(jLabel50))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelLAviao3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel53, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
                     .addComponent(jLabel54, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jPanelLAviao3Layout.setVerticalGroup(
+            jPanelLAviao3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLAviao3Layout.createSequentialGroup()
+                .addGroup(jPanelLAviao3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel49)
                     .addComponent(jLabel54))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelLAviao3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel50)
                     .addComponent(jLabel53))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelLAviao3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel51)
                     .addComponent(jLabel52)))
         );
@@ -671,41 +741,41 @@ public class PanelVoos extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanelDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelDesktopLayout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanelLAviao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelAviao, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
-                        .addComponent(jLabelDesktopTitle6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelAviaoLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(5, 5, 5)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanelRAviao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelDesktopLayout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanelLAviao1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(133, 133, 133)
                         .addComponent(jLabelAviao1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
-                        .addComponent(jLabelDesktopTitle7, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                        .addComponent(jLabelAviaoLine1, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
                         .addGap(5, 5, 5)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanelRAviao1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDesktopLayout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanelLAviao2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(80, 80, 80)
                         .addComponent(jLabelAviao2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
-                        .addComponent(jLabelDesktopTitle8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelAviaoLine2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(5, 5, 5)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanelRAviao2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelDesktopLayout.createSequentialGroup()
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanelLAviao3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelAviao3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
-                        .addComponent(jLabelDesktopTitle10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelAviaoLine3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(5, 5, 5)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanelRAviao3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
-        jPanelDesktopLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPanel1, jPanel2});
+        jPanelDesktopLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPanelLAviao2, jPanelRAviao});
 
         jPanelDesktopLayout.setVerticalGroup(
             jPanelDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -717,35 +787,35 @@ public class PanelVoos extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabelAviao, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelRAviao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelDesktopLayout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(jLabelDesktopTitle6, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabelAviaoLine, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanelLAviao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelAviao1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelDesktopLayout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(jLabelDesktopTitle7, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabelAviaoLine1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanelLAviao1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelRAviao1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelRAviao2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabelAviao2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanelDesktopLayout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(jLabelDesktopTitle8, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabelAviaoLine2, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanelLAviao2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelRAviao3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabelAviao3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanelDesktopLayout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(jLabelDesktopTitle10, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabelAviaoLine3, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanelLAviao3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelDesktopTitle5, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -833,22 +903,22 @@ public class PanelVoos extends javax.swing.JPanel {
     private javax.swing.JLabel jLabelAviao1;
     private javax.swing.JLabel jLabelAviao2;
     private javax.swing.JLabel jLabelAviao3;
+    private javax.swing.JLabel jLabelAviaoLine;
+    private javax.swing.JLabel jLabelAviaoLine1;
+    private javax.swing.JLabel jLabelAviaoLine2;
+    private javax.swing.JLabel jLabelAviaoLine3;
     private javax.swing.JLabel jLabelDesktopTitle;
-    private javax.swing.JLabel jLabelDesktopTitle10;
     private javax.swing.JLabel jLabelDesktopTitle5;
-    private javax.swing.JLabel jLabelDesktopTitle6;
-    private javax.swing.JLabel jLabelDesktopTitle7;
-    private javax.swing.JLabel jLabelDesktopTitle8;
     private javax.swing.JLabel jLabelDesktopTitle9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JPanel jPanelBackground;
     private javax.swing.JPanel jPanelDesktop;
+    private javax.swing.JPanel jPanelLAviao;
+    private javax.swing.JPanel jPanelLAviao1;
+    private javax.swing.JPanel jPanelLAviao2;
+    private javax.swing.JPanel jPanelLAviao3;
+    private javax.swing.JPanel jPanelRAviao;
+    private javax.swing.JPanel jPanelRAviao1;
+    private javax.swing.JPanel jPanelRAviao2;
+    private javax.swing.JPanel jPanelRAviao3;
     // End of variables declaration//GEN-END:variables
 }
