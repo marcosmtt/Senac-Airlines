@@ -9,7 +9,8 @@ import local.controller.Sistema;
 import local.model.TemplateDosPaineis;
 
 public class TelaInicial extends javax.swing.JFrame {
-    private Sistema sistema = new Sistema();
+
+    private Sistema sistema;
     private boolean isMaximized;
     private final int frameSizeInitialSize;
 
@@ -29,6 +30,7 @@ public class TelaInicial extends javax.swing.JFrame {
         initComponents();
         new TemplateDosPaineis(this.jPanelBackground);
         this.jPanelDesktop.setLayout(new BorderLayout());
+        sistema = new Sistema(this);
         //PAINEIS DA TELA INICIAL
         cadastroPanel = new PanelCadastro(this);
         voosPanel = new PanelVoos(sistema);
@@ -44,7 +46,7 @@ public class TelaInicial extends javax.swing.JFrame {
         this.paintComponents(this.getGraphics());
     }
 
-    private void changePanel(EnumPanel panelName) {
+    public void changePanel(EnumPanel panelName) {
 
         if (null != panelName) {
             switch (panelName) {
@@ -70,7 +72,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
         refreshPanels();
     }
-    
+
     public void setNavTxt(String txt) {
         this.jLabelDesktopTitle.setText(txt);
     }
@@ -116,6 +118,7 @@ public class TelaInicial extends javax.swing.JFrame {
         this.currentJPanel.setVisible(true);
         this.jPanelDesktop.paintComponents(this.jPanelDesktop.getGraphics());
 
+        voosPanel.getGraphicsX().setOriginPositions();
     }
 
     private void maximize() {
@@ -142,6 +145,10 @@ public class TelaInicial extends javax.swing.JFrame {
             this.jLabelMinimize.setVisible(true);
             isMaximized = true;
         }
+    }
+
+    public EnumPanel getEnumCurrentPanel() {
+        return enumCurrentPanel;
     }
 
     @SuppressWarnings("unchecked")
@@ -418,8 +425,7 @@ public class TelaInicial extends javax.swing.JFrame {
     public Sistema getSist() {
         return sistema;
     }
-    
-    
+
     /**
      * @param args the command line arguments
      */

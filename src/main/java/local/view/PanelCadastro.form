@@ -36,21 +36,23 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelPassageiro" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelDestino" pref="193" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelBagagem" pref="193" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelAviao" pref="193" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelVoo" pref="193" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+              </Group>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanelDesktop" max="32767" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="jLabelPassageiro" max="32767" attributes="0"/>
-                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelDestino" pref="143" max="32767" attributes="0"/>
-                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelBagagem" pref="143" max="32767" attributes="0"/>
-                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelAviao" pref="140" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                  <Component id="jPanelDesktop" max="32767" attributes="0"/>
+                  <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -63,6 +65,7 @@
                       <Component id="jLabelDestino" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
                       <Component id="jLabelBagagem" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
                       <Component id="jLabelAviao" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
+                      <Component id="jLabelVoo" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Component id="jPanelDesktop" max="32767" attributes="0"/>
@@ -207,6 +210,36 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabelAviaoMouseClicked"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelVoo">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="a0" green="71" red="3d" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Gisha" size="18" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="e8" green="e9" red="e8" type="rgb"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="VOO"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder roundedCorners="true">
+                  <Color PropertyName="color" blue="85" green="59" red="24" type="rgb"/>
+                </LineBorder>
+              </Border>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="botao" noResource="true"/>
+            <Property name="opaque" type="boolean" value="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabelVooMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>

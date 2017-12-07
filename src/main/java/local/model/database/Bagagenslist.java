@@ -22,16 +22,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Yuri
  */
 @Entity
-@Table(name = "bagagens")
+@Table(name = "bagagenslist")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Bagagens.findAll", query = "SELECT b FROM Bagagens b")
-    , @NamedQuery(name = "Bagagens.findById", query = "SELECT b FROM Bagagens b WHERE b.id = :id")
-    , @NamedQuery(name = "Bagagens.findByClienteId", query = "SELECT b FROM Bagagens b WHERE b.clienteId = :clienteId")
-    , @NamedQuery(name = "Bagagens.findByFoiEncaminhada", query = "SELECT b FROM Bagagens b WHERE b.foiEncaminhada = :foiEncaminhada")
-    , @NamedQuery(name = "Bagagens.findByVooId", query = "SELECT b FROM Bagagens b WHERE b.vooId = :vooId")
-    , @NamedQuery(name = "Bagagens.findByPeso", query = "SELECT b FROM Bagagens b WHERE b.peso = :peso")})
-public class Bagagens implements Serializable {
+    @NamedQuery(name = "Bagagenslist.findAll", query = "SELECT b FROM Bagagenslist b")
+    , @NamedQuery(name = "Bagagenslist.findById", query = "SELECT b FROM Bagagenslist b WHERE b.id = :id")
+    , @NamedQuery(name = "Bagagenslist.findByVooId", query = "SELECT b FROM Bagagenslist b WHERE b.vooId = :vooId")
+    , @NamedQuery(name = "Bagagenslist.findByBagagemId", query = "SELECT b FROM Bagagenslist b WHERE b.bagagemId = :bagagemId")})
+public class Bagagenslist implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -40,31 +38,23 @@ public class Bagagens implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "clienteId")
-    private int clienteId;
-    @Basic(optional = false)
-    @Column(name = "foiEncaminhada")
-    private boolean foiEncaminhada;
-    @Basic(optional = false)
     @Column(name = "vooId")
     private int vooId;
     @Basic(optional = false)
-    @Column(name = "peso")
-    private double peso;
+    @Column(name = "bagagemId")
+    private int bagagemId;
 
-    public Bagagens() {
+    public Bagagenslist() {
     }
 
-    public Bagagens(Integer id) {
+    public Bagagenslist(Integer id) {
         this.id = id;
     }
 
-    public Bagagens(Integer id, int clienteId, boolean foiEncaminhada, int vooId, double peso) {
+    public Bagagenslist(Integer id, int vooId, int bagagemId) {
         this.id = id;
-        this.clienteId = clienteId;
-        this.foiEncaminhada = foiEncaminhada;
         this.vooId = vooId;
-        this.peso = peso;
+        this.bagagemId = bagagemId;
     }
 
     public Integer getId() {
@@ -75,22 +65,6 @@ public class Bagagens implements Serializable {
         this.id = id;
     }
 
-    public int getClienteId() {
-        return clienteId;
-    }
-
-    public void setClienteId(int clienteId) {
-        this.clienteId = clienteId;
-    }
-
-    public boolean getFoiEncaminhada() {
-        return foiEncaminhada;
-    }
-
-    public void setFoiEncaminhada(boolean foiEncaminhada) {
-        this.foiEncaminhada = foiEncaminhada;
-    }
-
     public int getVooId() {
         return vooId;
     }
@@ -99,12 +73,12 @@ public class Bagagens implements Serializable {
         this.vooId = vooId;
     }
 
-    public double getPeso() {
-        return peso;
+    public int getBagagemId() {
+        return bagagemId;
     }
 
-    public void setPeso(double peso) {
-        this.peso = peso;
+    public void setBagagemId(int bagagemId) {
+        this.bagagemId = bagagemId;
     }
 
     @Override
@@ -117,10 +91,10 @@ public class Bagagens implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Bagagens)) {
+        if (!(object instanceof Bagagenslist)) {
             return false;
         }
-        Bagagens other = (Bagagens) object;
+        Bagagenslist other = (Bagagenslist) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -129,7 +103,7 @@ public class Bagagens implements Serializable {
 
     @Override
     public String toString() {
-        return "local.model.database.Bagagens[ id=" + id + " ]";
+        return "local.model.database.Bagagenslist[ id=" + id + " ]";
     }
     
 }

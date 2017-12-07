@@ -22,16 +22,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Yuri
  */
 @Entity
-@Table(name = "bagagens")
+@Table(name = "passageiroslist")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Bagagens.findAll", query = "SELECT b FROM Bagagens b")
-    , @NamedQuery(name = "Bagagens.findById", query = "SELECT b FROM Bagagens b WHERE b.id = :id")
-    , @NamedQuery(name = "Bagagens.findByClienteId", query = "SELECT b FROM Bagagens b WHERE b.clienteId = :clienteId")
-    , @NamedQuery(name = "Bagagens.findByFoiEncaminhada", query = "SELECT b FROM Bagagens b WHERE b.foiEncaminhada = :foiEncaminhada")
-    , @NamedQuery(name = "Bagagens.findByVooId", query = "SELECT b FROM Bagagens b WHERE b.vooId = :vooId")
-    , @NamedQuery(name = "Bagagens.findByPeso", query = "SELECT b FROM Bagagens b WHERE b.peso = :peso")})
-public class Bagagens implements Serializable {
+    @NamedQuery(name = "Passageiroslist.findAll", query = "SELECT p FROM Passageiroslist p")
+    , @NamedQuery(name = "Passageiroslist.findById", query = "SELECT p FROM Passageiroslist p WHERE p.id = :id")
+    , @NamedQuery(name = "Passageiroslist.findByClienteId", query = "SELECT p FROM Passageiroslist p WHERE p.clienteId = :clienteId")
+    , @NamedQuery(name = "Passageiroslist.findByVooId", query = "SELECT p FROM Passageiroslist p WHERE p.vooId = :vooId")})
+public class Passageiroslist implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -43,28 +41,20 @@ public class Bagagens implements Serializable {
     @Column(name = "clienteId")
     private int clienteId;
     @Basic(optional = false)
-    @Column(name = "foiEncaminhada")
-    private boolean foiEncaminhada;
-    @Basic(optional = false)
     @Column(name = "vooId")
     private int vooId;
-    @Basic(optional = false)
-    @Column(name = "peso")
-    private double peso;
 
-    public Bagagens() {
+    public Passageiroslist() {
     }
 
-    public Bagagens(Integer id) {
+    public Passageiroslist(Integer id) {
         this.id = id;
     }
 
-    public Bagagens(Integer id, int clienteId, boolean foiEncaminhada, int vooId, double peso) {
+    public Passageiroslist(Integer id, int clienteId, int vooId) {
         this.id = id;
         this.clienteId = clienteId;
-        this.foiEncaminhada = foiEncaminhada;
         this.vooId = vooId;
-        this.peso = peso;
     }
 
     public Integer getId() {
@@ -83,28 +73,12 @@ public class Bagagens implements Serializable {
         this.clienteId = clienteId;
     }
 
-    public boolean getFoiEncaminhada() {
-        return foiEncaminhada;
-    }
-
-    public void setFoiEncaminhada(boolean foiEncaminhada) {
-        this.foiEncaminhada = foiEncaminhada;
-    }
-
     public int getVooId() {
         return vooId;
     }
 
     public void setVooId(int vooId) {
         this.vooId = vooId;
-    }
-
-    public double getPeso() {
-        return peso;
-    }
-
-    public void setPeso(double peso) {
-        this.peso = peso;
     }
 
     @Override
@@ -117,10 +91,10 @@ public class Bagagens implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Bagagens)) {
+        if (!(object instanceof Passageiroslist)) {
             return false;
         }
-        Bagagens other = (Bagagens) object;
+        Passageiroslist other = (Passageiroslist) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -129,7 +103,7 @@ public class Bagagens implements Serializable {
 
     @Override
     public String toString() {
-        return "local.model.database.Bagagens[ id=" + id + " ]";
+        return "local.model.database.Passageiroslist[ id=" + id + " ]";
     }
     
 }

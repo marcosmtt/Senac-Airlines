@@ -13,16 +13,16 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import local.controller.exceptions.NonexistentEntityException;
-import local.model.database.Destino;
+import local.controller.database.exceptions.NonexistentEntityException;
+import local.model.database.Passageiroslist;
 
 /**
  *
  * @author Yuri
  */
-public class DestinoDAO implements Serializable {
+public class PassageiroslistDAO implements Serializable {
 
-    public DestinoDAO(EntityManagerFactory emf) {
+    public PassageiroslistDAO(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -31,12 +31,12 @@ public class DestinoDAO implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Destino destino) {
+    public void create(Passageiroslist passageiroslist) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(destino);
+            em.persist(passageiroslist);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -45,19 +45,19 @@ public class DestinoDAO implements Serializable {
         }
     }
 
-    public void edit(Destino destino) throws NonexistentEntityException, Exception {
+    public void edit(Passageiroslist passageiroslist) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            destino = em.merge(destino);
+            passageiroslist = em.merge(passageiroslist);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = destino.getId();
-                if (findDestino(id) == null) {
-                    throw new NonexistentEntityException("The destino with id " + id + " no longer exists.");
+                Integer id = passageiroslist.getId();
+                if (findPassageiroslist(id) == null) {
+                    throw new NonexistentEntityException("The passageiroslist with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -68,19 +68,19 @@ public class DestinoDAO implements Serializable {
         }
     }
 
-    public void destroy(Long id) throws NonexistentEntityException {
+    public void destroy(Integer id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Destino destino;
+            Passageiroslist passageiroslist;
             try {
-                destino = em.getReference(Destino.class, id);
-                destino.getId();
+                passageiroslist = em.getReference(Passageiroslist.class, id);
+                passageiroslist.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The destino with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The passageiroslist with id " + id + " no longer exists.", enfe);
             }
-            em.remove(destino);
+            em.remove(passageiroslist);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -89,19 +89,19 @@ public class DestinoDAO implements Serializable {
         }
     }
 
-    public List<Destino> findDestinoEntities() {
-        return findDestinoEntities(true, -1, -1);
+    public List<Passageiroslist> findPassageiroslistEntities() {
+        return findPassageiroslistEntities(true, -1, -1);
     }
 
-    public List<Destino> findDestinoEntities(int maxResults, int firstResult) {
-        return findDestinoEntities(false, maxResults, firstResult);
+    public List<Passageiroslist> findPassageiroslistEntities(int maxResults, int firstResult) {
+        return findPassageiroslistEntities(false, maxResults, firstResult);
     }
 
-    private List<Destino> findDestinoEntities(boolean all, int maxResults, int firstResult) {
+    private List<Passageiroslist> findPassageiroslistEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Destino.class));
+            cq.select(cq.from(Passageiroslist.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,20 +113,20 @@ public class DestinoDAO implements Serializable {
         }
     }
 
-    public Destino findDestino(Long id) {
+    public Passageiroslist findPassageiroslist(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Destino.class, id);
+            return em.find(Passageiroslist.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getDestinoCount() {
+    public int getPassageiroslistCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Destino> rt = cq.from(Destino.class);
+            Root<Passageiroslist> rt = cq.from(Passageiroslist.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

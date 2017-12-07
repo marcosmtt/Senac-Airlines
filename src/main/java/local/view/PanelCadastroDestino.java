@@ -1,15 +1,124 @@
 package local.view;
 
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import local.controller.Sistema;
 import local.model.TemplateDosPaineis;
+import local.model.database.Destino;
 
 public class PanelCadastroDestino extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelCadastroPassageiro
-     */
-    public PanelCadastroDestino() {
+    private Sistema sist;
+    private DefaultTableModel tm;
+
+    public PanelCadastroDestino(Sistema sist) {
         initComponents();
+        this.sist = sist;
+        Object[] colums = {"ID", "Nome", "Distancia", "Pais", "Cidade"};
+        this.tm = new DefaultTableModel(colums, 0);
+        this.jTableDestinos.setModel(tm);
+        jTableDestinos.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int row = jTableDestinos.rowAtPoint(evt.getPoint());
+                int col = jTableDestinos.columnAtPoint(evt.getPoint());
+                if (row >= 0 && col >= 0) {
+                    selectRow();
+                }
+            }
+        });
         new TemplateDosPaineis(this.jPanelBackground);
+        updateList();
+    }
+
+    private void selectRow() {
+        String id = jTableDestinos.getValueAt(jTableDestinos.getSelectedRow(), 0).toString();
+        String nome = jTableDestinos.getValueAt(jTableDestinos.getSelectedRow(), 1).toString();
+        String distancia = jTableDestinos.getValueAt(jTableDestinos.getSelectedRow(), 2).toString();
+        String pais = jTableDestinos.getValueAt(jTableDestinos.getSelectedRow(), 3).toString();
+        String cidade = jTableDestinos.getValueAt(jTableDestinos.getSelectedRow(), 4).toString();
+        jTextFieldNome.setText(nome);
+        jTextFieldDistancia.setText(distancia);
+        jTextFieldPais.setText(pais);
+        jTextFieldCidade.setText(cidade);
+        jTextFieldID.setText(id);
+    }
+
+    /**
+     *
+     * @param id
+     * @return retorna um novo aviao se o argumento for um valor != de -1.
+     * retorna um aviao do banco de dados se o argumento for o id
+     */
+    private Destino newDestino(int id) {
+        try {
+            //pega os valores que estao nas caixas de texto da view
+            String nome = jTextFieldNome.getText();
+            String distancia = jTextFieldDistancia.getText();
+            String pais = jTextFieldPais.getText();
+            String cidade = jTextFieldCidade.getText();
+            //cria uma entidade destino com os valores
+            Destino destino;
+            if (id != -1) {
+                long id2 = Integer.valueOf(jTextFieldID.getText());
+                destino = new Destino(id2, nome, Double.parseDouble(distancia), pais, cidade);
+            } else {
+                destino = new Destino(null, nome, Double.parseDouble(distancia), pais, cidade);
+            }
+            return destino;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Valor(es) incorreto(s).");
+            return null;
+        }
+    }
+
+    private void cadastrar() {
+        try {
+            sist.cadastrar(newDestino(-1));
+            updateList();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "erro ao cadastrar destino");
+        }
+    }
+
+    private void updateList() {
+        List x = sist.select(new Destino());
+        System.out.println(x);
+        tm.setRowCount(0);
+        for (int i = 0; i < x.size(); i++) {
+            Destino destino = (Destino) x.get(i);
+
+            Object[] row = {destino.getId(), destino.getNome(), destino.getDistancia(), destino.getPais(), destino.getCidade()};
+            tm.addRow(row);
+        }
+    }
+
+    private void remover() {
+        try {
+            int selected = jTableDestinos.getSelectedRow();
+            if (selected != -1) {
+                long id = (long) jTableDestinos.getValueAt(selected, 0);
+                sist.getJpaDestino().destroy(id);
+                updateList();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "erro ao remover destino");
+        }
+    }
+
+    private void alterar() {
+        try {
+            int selected = jTableDestinos.getSelectedRow();
+            if (selected != -1) {
+                long id = (long) jTableDestinos.getValueAt(selected, 0);
+                sist.getJpaDestino().edit(newDestino(Integer.parseInt(jTextFieldID.getText())));
+//                JOptionPane.showMessageDialog(null, "Destino (cód."+id+") alterado.");
+                updateList();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "erro ao alterar destino");
+        }
     }
 
     /**
@@ -23,23 +132,23 @@ public class PanelCadastroDestino extends javax.swing.JPanel {
 
         jPanelBackground = new javax.swing.JPanel();
         jLabelCadastro12 = new javax.swing.JLabel();
-        jLabelCadastro13 = new javax.swing.JLabel();
-        jLabelCadastro14 = new javax.swing.JLabel();
         jLabelCadastro15 = new javax.swing.JLabel();
         jLabelCadastro16 = new javax.swing.JLabel();
-        jLabelPesquisar = new javax.swing.JLabel();
-        jLabelCadastrar = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jLabel1 = new javax.swing.JLabel();
+        jTextFieldNome = new javax.swing.JTextField();
+        jTextFieldCidade = new javax.swing.JTextField();
         jLabelLogo = new javax.swing.JLabel();
         jLabelCadastro17 = new javax.swing.JLabel();
+        jLabelCadastro18 = new javax.swing.JLabel();
+        jLabelCadastro19 = new javax.swing.JLabel();
+        jLabelCadastrar = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableDestinos = new javax.swing.JTable();
+        jLabelCancelar1 = new javax.swing.JLabel();
+        jLabelCancelar2 = new javax.swing.JLabel();
+        jTextFieldID = new javax.swing.JTextField();
+        jTextFieldDistancia = new javax.swing.JTextField();
+        jTextFieldPais = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         jPanelBackground.setBackground(new java.awt.Color(36, 89, 133));
 
@@ -47,22 +156,8 @@ public class PanelCadastroDestino extends javax.swing.JPanel {
         jLabelCadastro12.setFont(new java.awt.Font("Gisha", 1, 18)); // NOI18N
         jLabelCadastro12.setForeground(new java.awt.Color(232, 233, 232));
         jLabelCadastro12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelCadastro12.setText("Destino - Endereço/Rua");
+        jLabelCadastro12.setText("Cadastro/Alteração - Aeroportos");
         jLabelCadastro12.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jLabelCadastro13.setBackground(new java.awt.Color(44, 102, 152));
-        jLabelCadastro13.setFont(new java.awt.Font("Gisha", 1, 18)); // NOI18N
-        jLabelCadastro13.setForeground(new java.awt.Color(232, 233, 232));
-        jLabelCadastro13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelCadastro13.setText("Bairro");
-        jLabelCadastro13.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jLabelCadastro14.setBackground(new java.awt.Color(44, 102, 152));
-        jLabelCadastro14.setFont(new java.awt.Font("Gisha", 1, 18)); // NOI18N
-        jLabelCadastro14.setForeground(new java.awt.Color(232, 233, 232));
-        jLabelCadastro14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelCadastro14.setText("Descrição");
-        jLabelCadastro14.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabelCadastro15.setBackground(new java.awt.Color(44, 102, 152));
         jLabelCadastro15.setFont(new java.awt.Font("Gisha", 1, 18)); // NOI18N
@@ -77,81 +172,15 @@ public class PanelCadastroDestino extends javax.swing.JPanel {
         jLabelCadastro16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelCadastro16.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jLabelPesquisar.setBackground(new java.awt.Color(61, 113, 160));
-        jLabelPesquisar.setFont(new java.awt.Font("Gisha", 0, 18)); // NOI18N
-        jLabelPesquisar.setForeground(new java.awt.Color(232, 233, 232));
-        jLabelPesquisar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelPesquisar.setText("Pesquisar");
-        jLabelPesquisar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(36, 89, 133), 1, true));
-        jLabelPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabelPesquisar.setName("botao"); // NOI18N
-        jLabelPesquisar.setOpaque(true);
-        jLabelPesquisar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabelPesquisarMouseEntered(evt);
-            }
-        });
+        jTextFieldNome.setBackground(new java.awt.Color(10, 59, 102));
+        jTextFieldNome.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldNome.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldNome.setBorder(null);
 
-        jLabelCadastrar.setBackground(new java.awt.Color(61, 113, 160));
-        jLabelCadastrar.setFont(new java.awt.Font("Gisha", 0, 18)); // NOI18N
-        jLabelCadastrar.setForeground(new java.awt.Color(232, 233, 232));
-        jLabelCadastrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelCadastrar.setText("Cadastrar Destino");
-        jLabelCadastrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(36, 89, 133), 1, true));
-        jLabelCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabelCadastrar.setName("botao"); // NOI18N
-        jLabelCadastrar.setOpaque(true);
-
-        jList1.setBackground(new java.awt.Color(10, 59, 102));
-        jList1.setForeground(new java.awt.Color(255, 255, 255));
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "02:15 - DISPONIVEL", "05:37 - DISPONIVEL", "09:23 - LOTADO", "11:55 - DISPONIVEL", "14:35 - LOTADO", "16:44 - LOTADO", "19:32 - DISPONIVEL", "21:13 - DISPONIVEL", "22:53 - DISPONIVEL" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jList1.setFocusable(false);
-        jList1.setRequestFocusEnabled(false);
-        jList1.setSelectionBackground(new java.awt.Color(232, 233, 232));
-        jList1.setSelectionForeground(new java.awt.Color(0, 0, 0));
-        jScrollPane1.setViewportView(jList1);
-
-        jTextField1.setBackground(new java.awt.Color(10, 59, 102));
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setBorder(null);
-
-        jTextField2.setBackground(new java.awt.Color(10, 59, 102));
-        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField2.setBorder(null);
-
-        jTextField3.setBackground(new java.awt.Color(10, 59, 102));
-        jTextField3.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField3.setText("UF");
-        jTextField3.setBorder(null);
-
-        jTextField4.setBackground(new java.awt.Color(10, 59, 102));
-        jTextField4.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField4.setBorder(null);
-
-        jTextField5.setBackground(new java.awt.Color(10, 59, 102));
-        jTextField5.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField5.setBorder(null);
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
-        });
-
-        jFormattedTextField1.setBackground(new java.awt.Color(10, 59, 102));
-        jFormattedTextField1.setBorder(null);
-        jFormattedTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM))));
-        jFormattedTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        jLabel1.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Selecione uma cidade para");
+        jTextFieldCidade.setBackground(new java.awt.Color(10, 59, 102));
+        jTextFieldCidade.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldCidade.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldCidade.setBorder(null);
 
         jLabelLogo.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabelLogo.setForeground(new java.awt.Color(255, 153, 51));
@@ -164,8 +193,99 @@ public class PanelCadastroDestino extends javax.swing.JPanel {
         jLabelCadastro17.setFont(new java.awt.Font("Gisha", 1, 18)); // NOI18N
         jLabelCadastro17.setForeground(new java.awt.Color(232, 233, 232));
         jLabelCadastro17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelCadastro17.setText("CEP");
+        jLabelCadastro17.setText("Nome");
         jLabelCadastro17.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jLabelCadastro18.setBackground(new java.awt.Color(44, 102, 152));
+        jLabelCadastro18.setFont(new java.awt.Font("Gisha", 1, 18)); // NOI18N
+        jLabelCadastro18.setForeground(new java.awt.Color(232, 233, 232));
+        jLabelCadastro18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelCadastro18.setText("Distancia(km)");
+        jLabelCadastro18.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jLabelCadastro19.setBackground(new java.awt.Color(44, 102, 152));
+        jLabelCadastro19.setFont(new java.awt.Font("Gisha", 1, 18)); // NOI18N
+        jLabelCadastro19.setForeground(new java.awt.Color(232, 233, 232));
+        jLabelCadastro19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelCadastro19.setText("País");
+        jLabelCadastro19.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jLabelCadastrar.setBackground(new java.awt.Color(61, 113, 160));
+        jLabelCadastrar.setFont(new java.awt.Font("Gisha", 0, 18)); // NOI18N
+        jLabelCadastrar.setForeground(new java.awt.Color(232, 233, 232));
+        jLabelCadastrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelCadastrar.setText("Cadastrar Novo");
+        jLabelCadastrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(36, 89, 133), 1, true));
+        jLabelCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelCadastrar.setName("botao"); // NOI18N
+        jLabelCadastrar.setOpaque(true);
+        jLabelCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelCadastrarMouseClicked(evt);
+            }
+        });
+
+        jTableDestinos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTableDestinos);
+
+        jLabelCancelar1.setBackground(new java.awt.Color(61, 113, 160));
+        jLabelCancelar1.setFont(new java.awt.Font("Gisha", 0, 18)); // NOI18N
+        jLabelCancelar1.setForeground(new java.awt.Color(232, 233, 232));
+        jLabelCancelar1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelCancelar1.setText("Salvar Alteração");
+        jLabelCancelar1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(36, 89, 133), 1, true));
+        jLabelCancelar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelCancelar1.setName("botao"); // NOI18N
+        jLabelCancelar1.setOpaque(true);
+        jLabelCancelar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelCancelar1MouseClicked(evt);
+            }
+        });
+
+        jLabelCancelar2.setBackground(new java.awt.Color(61, 113, 160));
+        jLabelCancelar2.setFont(new java.awt.Font("Gisha", 0, 18)); // NOI18N
+        jLabelCancelar2.setForeground(new java.awt.Color(232, 233, 232));
+        jLabelCancelar2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelCancelar2.setText("Remover Selecionado");
+        jLabelCancelar2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(36, 89, 133), 1, true));
+        jLabelCancelar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelCancelar2.setName("botao"); // NOI18N
+        jLabelCancelar2.setOpaque(true);
+        jLabelCancelar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelCancelar2MouseClicked(evt);
+            }
+        });
+
+        jTextFieldID.setEditable(false);
+        jTextFieldID.setBackground(new java.awt.Color(10, 59, 102));
+        jTextFieldID.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldID.setText("ID");
+        jTextFieldID.setBorder(null);
+
+        jTextFieldDistancia.setBackground(new java.awt.Color(10, 59, 102));
+        jTextFieldDistancia.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldDistancia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldDistancia.setBorder(null);
+
+        jTextFieldPais.setBackground(new java.awt.Color(10, 59, 102));
+        jTextFieldPais.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldPais.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldPais.setBorder(null);
+
+        jLabel1.setText("cód:");
 
         javax.swing.GroupLayout jPanelBackgroundLayout = new javax.swing.GroupLayout(jPanelBackground);
         jPanelBackground.setLayout(jPanelBackgroundLayout);
@@ -175,87 +295,79 @@ public class PanelCadastroDestino extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelBackgroundLayout.createSequentialGroup()
-                        .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelCadastro12)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelCadastro13))
-                        .addGap(0, 8, Short.MAX_VALUE))
+                        .addComponent(jLabelCancelar1, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelCancelar2, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE))
                     .addGroup(jPanelBackgroundLayout.createSequentialGroup()
                         .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelBackgroundLayout.createSequentialGroup()
                                 .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelCadastro15)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(223, 223, 223)
-                                .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanelBackgroundLayout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabelCadastro17)
-                                            .addGroup(jPanelBackgroundLayout.createSequentialGroup()
-                                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabelPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addComponent(jLabelCadastro16)))
-                            .addGroup(jPanelBackgroundLayout.createSequentialGroup()
-                                .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextFieldNome)
+                                    .addComponent(jLabelCadastro17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanelBackgroundLayout.createSequentialGroup()
-                                        .addComponent(jLabelCadastro14)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jTextField2)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabelCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))))
-                        .addGap(8, 8, 8))))
+                                .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldPais)
+                                    .addComponent(jLabelCadastro19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanelBackgroundLayout.createSequentialGroup()
+                                .addComponent(jLabelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelCadastro12)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelBackgroundLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelBackgroundLayout.createSequentialGroup()
+                                .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldCidade)
+                                    .addComponent(jLabelCadastro15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldDistancia)
+                                    .addComponent(jLabelCadastro18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addComponent(jLabelCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelCadastro16))
         );
         jPanelBackgroundLayout.setVerticalGroup(
             jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBackgroundLayout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
+                .addGap(170, 170, 170)
+                .addComponent(jLabelCadastro16)
+                .addContainerGap(191, Short.MAX_VALUE))
+            .addGroup(jPanelBackgroundLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCadastro12))
+                .addGap(10, 10, 10)
                 .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelCadastro12)
-                    .addGroup(jPanelBackgroundLayout.createSequentialGroup()
-                        .addComponent(jLabelCadastro13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBackgroundLayout.createSequentialGroup()
-                        .addComponent(jLabelCadastro15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBackgroundLayout.createSequentialGroup()
-                        .addComponent(jLabelCadastro16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabelCadastro17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelPesquisar))))
+                        .addComponent(jLabelCadastro19))
+                    .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelCadastro18)
+                        .addComponent(jLabelCadastro15)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanelBackgroundLayout.createSequentialGroup()
-                        .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabelCadastro14)
-                            .addComponent(jLabelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelCadastrar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldDistancia, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldPais, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelCadastrar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelCancelar2)
+                    .addComponent(jLabelCancelar1))
                 .addContainerGap())
         );
 
@@ -263,7 +375,9 @@ public class PanelCadastroDestino extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanelBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,34 +385,38 @@ public class PanelCadastroDestino extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    private void jLabelCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCadastrarMouseClicked
+        cadastrar();
+    }//GEN-LAST:event_jLabelCadastrarMouseClicked
 
-    private void jLabelPesquisarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPesquisarMouseEntered
+    private void jLabelCancelar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCancelar1MouseClicked
+        alterar();
+    }//GEN-LAST:event_jLabelCancelar1MouseClicked
 
-    }//GEN-LAST:event_jLabelPesquisarMouseEntered
+    private void jLabelCancelar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCancelar2MouseClicked
+        remover();
+    }//GEN-LAST:event_jLabelCancelar2MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelCadastrar;
     private javax.swing.JLabel jLabelCadastro12;
-    private javax.swing.JLabel jLabelCadastro13;
-    private javax.swing.JLabel jLabelCadastro14;
     private javax.swing.JLabel jLabelCadastro15;
     private javax.swing.JLabel jLabelCadastro16;
     private javax.swing.JLabel jLabelCadastro17;
+    private javax.swing.JLabel jLabelCadastro18;
+    private javax.swing.JLabel jLabelCadastro19;
+    private javax.swing.JLabel jLabelCancelar1;
+    private javax.swing.JLabel jLabelCancelar2;
     private javax.swing.JLabel jLabelLogo;
-    private javax.swing.JLabel jLabelPesquisar;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanelBackground;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTableDestinos;
+    private javax.swing.JTextField jTextFieldCidade;
+    private javax.swing.JTextField jTextFieldDistancia;
+    private javax.swing.JTextField jTextFieldID;
+    private javax.swing.JTextField jTextFieldNome;
+    private javax.swing.JTextField jTextFieldPais;
     // End of variables declaration//GEN-END:variables
 }

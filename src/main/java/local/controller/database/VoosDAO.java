@@ -13,16 +13,16 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import local.controller.exceptions.NonexistentEntityException;
-import local.model.database.Destino;
+import local.controller.database.exceptions.NonexistentEntityException;
+import local.model.database.Voos;
 
 /**
  *
  * @author Yuri
  */
-public class DestinoDAO implements Serializable {
+public class VoosDAO implements Serializable {
 
-    public DestinoDAO(EntityManagerFactory emf) {
+    public VoosDAO(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -31,12 +31,12 @@ public class DestinoDAO implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Destino destino) {
+    public void create(Voos voos) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(destino);
+            em.persist(voos);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -45,19 +45,19 @@ public class DestinoDAO implements Serializable {
         }
     }
 
-    public void edit(Destino destino) throws NonexistentEntityException, Exception {
+    public void edit(Voos voos) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            destino = em.merge(destino);
+            voos = em.merge(voos);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = destino.getId();
-                if (findDestino(id) == null) {
-                    throw new NonexistentEntityException("The destino with id " + id + " no longer exists.");
+                Integer id = voos.getId();
+                if (findVoos(id) == null) {
+                    throw new NonexistentEntityException("The voos with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -68,19 +68,19 @@ public class DestinoDAO implements Serializable {
         }
     }
 
-    public void destroy(Long id) throws NonexistentEntityException {
+    public void destroy(Integer id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Destino destino;
+            Voos voos;
             try {
-                destino = em.getReference(Destino.class, id);
-                destino.getId();
+                voos = em.getReference(Voos.class, id);
+                voos.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The destino with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The voos with id " + id + " no longer exists.", enfe);
             }
-            em.remove(destino);
+            em.remove(voos);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -89,19 +89,19 @@ public class DestinoDAO implements Serializable {
         }
     }
 
-    public List<Destino> findDestinoEntities() {
-        return findDestinoEntities(true, -1, -1);
+    public List<Voos> findVoosEntities() {
+        return findVoosEntities(true, -1, -1);
     }
 
-    public List<Destino> findDestinoEntities(int maxResults, int firstResult) {
-        return findDestinoEntities(false, maxResults, firstResult);
+    public List<Voos> findVoosEntities(int maxResults, int firstResult) {
+        return findVoosEntities(false, maxResults, firstResult);
     }
 
-    private List<Destino> findDestinoEntities(boolean all, int maxResults, int firstResult) {
+    private List<Voos> findVoosEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Destino.class));
+            cq.select(cq.from(Voos.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,20 +113,20 @@ public class DestinoDAO implements Serializable {
         }
     }
 
-    public Destino findDestino(Long id) {
+    public Voos findVoos(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Destino.class, id);
+            return em.find(Voos.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getDestinoCount() {
+    public int getVoosCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Destino> rt = cq.from(Destino.class);
+            Root<Voos> rt = cq.from(Voos.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

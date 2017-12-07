@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package local.model.database;
 
 import java.io.Serializable;
@@ -12,6 +17,10 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ *
+ * @author Yuri
+ */
 @Entity
 @Table(name = "clientes")
 @XmlRootElement
@@ -19,7 +28,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Clientes.findAll", query = "SELECT c FROM Clientes c")
     , @NamedQuery(name = "Clientes.findById", query = "SELECT c FROM Clientes c WHERE c.id = :id")
     , @NamedQuery(name = "Clientes.findByNome", query = "SELECT c FROM Clientes c WHERE c.nome = :nome")
-    , @NamedQuery(name = "Clientes.findByRg", query = "SELECT c FROM Clientes c WHERE c.rg = :rg")})
+    , @NamedQuery(name = "Clientes.findByRg", query = "SELECT c FROM Clientes c WHERE c.rg = :rg")
+    , @NamedQuery(name = "Clientes.findByPassageiro", query = "SELECT c FROM Clientes c WHERE c.passageiro = :passageiro")
+    , @NamedQuery(name = "Clientes.findByPassaporte", query = "SELECT c FROM Clientes c WHERE c.passaporte = :passaporte")})
 public class Clientes implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -33,7 +44,12 @@ public class Clientes implements Serializable {
     private String nome;
     @Basic(optional = false)
     @Column(name = "rg")
-    private int rg;
+    private String rg;
+    @Basic(optional = false)
+    @Column(name = "passageiro")
+    private String passageiro;
+    @Column(name = "passaporte")
+    private String passaporte;
 
     public Clientes() {
     }
@@ -42,10 +58,12 @@ public class Clientes implements Serializable {
         this.id = id;
     }
 
-    public Clientes(Integer id, String nome, int rg) {
+    public Clientes(Integer id, String nome, String rg, String passageiro, String passaporte) {
         this.id = id;
         this.nome = nome;
         this.rg = rg;
+        this.passageiro = passageiro;
+        this.passaporte = passaporte;
     }
 
     public Integer getId() {
@@ -64,12 +82,28 @@ public class Clientes implements Serializable {
         this.nome = nome;
     }
 
-    public int getRg() {
+    public String getRg() {
         return rg;
     }
 
-    public void setRg(int rg) {
+    public void setRg(String rg) {
         this.rg = rg;
+    }
+
+    public String getPassageiro() {
+        return passageiro;
+    }
+
+    public void setPassageiro(String passageiro) {
+        this.passageiro = passageiro;
+    }
+
+    public String getPassaporte() {
+        return passaporte;
+    }
+
+    public void setPassaporte(String passaporte) {
+        this.passaporte = passaporte;
     }
 
     @Override
@@ -96,5 +130,5 @@ public class Clientes implements Serializable {
     public String toString() {
         return "local.model.database.Clientes[ id=" + id + " ]";
     }
-    
+
 }

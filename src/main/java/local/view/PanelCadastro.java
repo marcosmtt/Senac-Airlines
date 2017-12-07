@@ -12,9 +12,10 @@ public class PanelCadastro extends javax.swing.JPanel {
     private PanelCadastroPassageiro cadastroPassageiro;
     private PanelCadastroAviao cadastroAviao;
     private PanelCadastroDestino cadastroDestino;
+    private PanelCadastroVoo cadastroVoo;
 
     private enum EnumPanel {
-        PASSAGEIRO, AVIAO, VOOS, BAGAGEM, DESTINO
+        PASSAGEIRO, AVIAO, VOO, BAGAGEM, DESTINO
     }
     private EnumPanel enumCurrentPanel;
 
@@ -28,11 +29,13 @@ public class PanelCadastro extends javax.swing.JPanel {
         //PAINEIS DE CADASTRO
         cadastroPassageiro = new PanelCadastroPassageiro(telaInicial.getSist());
         cadastroAviao = new PanelCadastroAviao(telaInicial.getSist());
-        cadastroDestino = new PanelCadastroDestino();
+        cadastroDestino = new PanelCadastroDestino(telaInicial.getSist());
+        cadastroVoo = new PanelCadastroVoo(telaInicial.getSist());
 
         this.cadastroPassageiro.setVisible(false);
         this.cadastroAviao.setVisible(false);
         this.cadastroDestino.setVisible(false);
+        this.cadastroVoo.setVisible(false);
 
         this.currentJPanel = cadastroPassageiro;
         //--
@@ -54,6 +57,10 @@ public class PanelCadastro extends javax.swing.JPanel {
                 case AVIAO:
                     this.enumCurrentPanel = EnumPanel.AVIAO;
                     telaInicial.setNavTxt("CADASTRO --> AVIAO");
+                    break;
+                case VOO:
+                    this.enumCurrentPanel = EnumPanel.VOO;
+                    telaInicial.setNavTxt("CADASTRO --> VOO");
                     break;
                 default:
                     break;
@@ -80,6 +87,10 @@ public class PanelCadastro extends javax.swing.JPanel {
                     this.currentJPanel = cadastroAviao;
                     this.jPanelDesktop.add(cadastroAviao, BorderLayout.CENTER);
                     break;
+                case VOO:
+                    this.currentJPanel = cadastroVoo;
+                    this.jPanelDesktop.add(cadastroVoo, BorderLayout.CENTER);
+                    break;
                 default:
                     break;
             }
@@ -98,6 +109,7 @@ public class PanelCadastro extends javax.swing.JPanel {
         jLabelBagagem = new javax.swing.JLabel();
         jPanelDesktop = new javax.swing.JPanel();
         jLabelAviao = new javax.swing.JLabel();
+        jLabelVoo = new javax.swing.JLabel();
 
         jPanelBackground.setBackground(new java.awt.Color(44, 102, 152));
 
@@ -169,23 +181,41 @@ public class PanelCadastro extends javax.swing.JPanel {
             }
         });
 
+        jLabelVoo.setBackground(new java.awt.Color(61, 113, 160));
+        jLabelVoo.setFont(new java.awt.Font("Gisha", 1, 18)); // NOI18N
+        jLabelVoo.setForeground(new java.awt.Color(232, 233, 232));
+        jLabelVoo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelVoo.setText("VOO");
+        jLabelVoo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(36, 89, 133), 1, true));
+        jLabelVoo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelVoo.setName("botao"); // NOI18N
+        jLabelVoo.setOpaque(true);
+        jLabelVoo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelVooMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelBackgroundLayout = new javax.swing.GroupLayout(jPanelBackground);
         jPanelBackground.setLayout(jPanelBackgroundLayout);
         jPanelBackgroundLayout.setHorizontalGroup(
             jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBackgroundLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelDesktop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanelBackgroundLayout.createSequentialGroup()
-                        .addComponent(jLabelPassageiro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelBagagem, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelAviao, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))
-                .addGap(25, 25, 25))
+                .addContainerGap()
+                .addComponent(jLabelPassageiro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelBagagem, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelAviao, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelVoo, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                .addGap(6, 6, 6))
+            .addGroup(jPanelBackgroundLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jPanelDesktop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(14, 14, 14))
         );
         jPanelBackgroundLayout.setVerticalGroup(
             jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,7 +225,8 @@ public class PanelCadastro extends javax.swing.JPanel {
                     .addComponent(jLabelPassageiro, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelBagagem, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelAviao, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelAviao, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelVoo, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanelDesktop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -225,12 +256,17 @@ public class PanelCadastro extends javax.swing.JPanel {
         changePanel(EnumPanel.AVIAO);
     }//GEN-LAST:event_jLabelAviaoMouseClicked
 
+    private void jLabelVooMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelVooMouseClicked
+        changePanel(EnumPanel.VOO);
+    }//GEN-LAST:event_jLabelVooMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabelAviao;
     private javax.swing.JLabel jLabelBagagem;
     private javax.swing.JLabel jLabelDestino;
     private javax.swing.JLabel jLabelPassageiro;
+    private javax.swing.JLabel jLabelVoo;
     private javax.swing.JPanel jPanelBackground;
     private javax.swing.JPanel jPanelDesktop;
     // End of variables declaration//GEN-END:variables

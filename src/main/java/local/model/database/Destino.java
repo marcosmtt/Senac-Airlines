@@ -1,7 +1,11 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package local.model.database;
 
 import java.io.Serializable;
-import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,15 +17,19 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ *
+ * @author Yuri
+ */
 @Entity
 @Table(name = "destino")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Destino.findAll", query = "SELECT d FROM Destino d")
     , @NamedQuery(name = "Destino.findById", query = "SELECT d FROM Destino d WHERE d.id = :id")
-    , @NamedQuery(name = "Destino.findByAeroporto", query = "SELECT d FROM Destino d WHERE d.aeroporto = :aeroporto")
+    , @NamedQuery(name = "Destino.findByNome", query = "SELECT d FROM Destino d WHERE d.nome = :nome")
+    , @NamedQuery(name = "Destino.findByDistancia", query = "SELECT d FROM Destino d WHERE d.distancia = :distancia")
     , @NamedQuery(name = "Destino.findByPais", query = "SELECT d FROM Destino d WHERE d.pais = :pais")
-    , @NamedQuery(name = "Destino.findByEstado", query = "SELECT d FROM Destino d WHERE d.estado = :estado")
     , @NamedQuery(name = "Destino.findByCidade", query = "SELECT d FROM Destino d WHERE d.cidade = :cidade")})
 public class Destino implements Serializable {
 
@@ -30,37 +38,32 @@ public class Destino implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
-    private long id;
-    @Basic(optional = false)
-    @Column(name = "aeroporto")
-    private String aeroporto;
-    @Basic(optional = false)
+    private Long id;
+    @Column(name = "nome")
+    private String nome;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "distancia")
+    private Double distancia;
     @Column(name = "pais")
     private String pais;
-    @Basic(optional = false)
-    @Column(name = "estado")
-    private String estado;
-    @Basic(optional = false)
     @Column(name = "cidade")
     private String cidade;
 
     public Destino() {
     }
 
-    public Destino(long id) {
+    public Destino(Long id, String nome, Double distancia, String pais, String cidade) {
         this.id = id;
-    }
-
-    public Destino(long id, String aeroporto, String pais, String estado, String cidade) {
-        this.id = id;
-        this.aeroporto = aeroporto;
+        this.nome = nome;
+        this.distancia = distancia;
         this.pais = pais;
-        this.estado = estado;
         this.cidade = cidade;
     }
 
-    
-    
+    public Destino(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }
@@ -69,48 +72,58 @@ public class Destino implements Serializable {
         this.id = id;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Double getDistancia() {
+        return distancia;
+    }
+
+    public void setDistancia(Double distancia) {
+        this.distancia = distancia;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 29 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 29 * hash + Objects.hashCode(this.aeroporto);
-        hash = 29 * hash + Objects.hashCode(this.pais);
-        hash = 29 * hash + Objects.hashCode(this.estado);
-        hash = 29 * hash + Objects.hashCode(this.cidade);
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Destino)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Destino other = (Destino) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        if (!Objects.equals(this.aeroporto, other.aeroporto)) {
-            return false;
-        }
-        if (!Objects.equals(this.pais, other.pais)) {
-            return false;
-        }
-        if (!Objects.equals(this.estado, other.estado)) {
-            return false;
-        }
-        if (!Objects.equals(this.cidade, other.cidade)) {
+        Destino other = (Destino) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
     }
 
-    
     @Override
     public String toString() {
         return "local.model.database.Destino[ id=" + id + " ]";
